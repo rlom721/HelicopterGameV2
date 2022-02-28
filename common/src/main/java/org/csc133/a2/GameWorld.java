@@ -4,10 +4,7 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.gameObjects.Fire;
-import org.csc133.a2.gameObjects.Helicopter;
-import org.csc133.a2.gameObjects.Helipad;
-import org.csc133.a2.gameObjects.River;
+import org.csc133.a2.gameObjects.*;
 
 import java.util.ArrayList;
 import java.util.Random;
