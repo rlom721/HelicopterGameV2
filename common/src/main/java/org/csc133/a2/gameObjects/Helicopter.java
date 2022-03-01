@@ -5,12 +5,13 @@ import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
+import org.csc133.a2.interfaces.Steerable;
 
 import static com.codename1.ui.CN.*;
 
 // ----------------------------------------------------------------------------
 //
-public class Helicopter {
+public class Helicopter extends Movable implements Steerable {
     private Point location, center;
     final private int size;
     final private int displayWidth, displayHeight;
@@ -168,5 +169,20 @@ public class Helicopter {
         int heY = center.getY() - (int) (headingRadius * Math.sin(angle));
 
         g.drawLine(center.getX(), center.getY(), heX, heY);
+    }
+
+    @Override
+    public void steerLeft() {
+
+    }
+
+    @Override
+    public void steerRight() {
+
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+
     }
 }

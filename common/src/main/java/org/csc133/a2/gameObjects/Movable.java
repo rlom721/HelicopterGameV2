@@ -1,5 +1,11 @@
 package org.csc133.a2.gameObjects;
 
-public class Movable extends GameObject{
+import com.codename1.ui.geom.Dimension;
+import com.codename1.ui.geom.Point;
 
+public abstract class Movable extends GameObject{
+
+    public Movable(Point location, Dimension dimension, int color) {
+        super(location, dimension, color);
+    }
 }
