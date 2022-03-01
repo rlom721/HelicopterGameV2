@@ -24,7 +24,7 @@ public abstract class GameObject implements Drawable {
     }
 
     // change size for SOME classes
-    void adjustSize(){
+    public void adjustSize(){
 
     }
 }
