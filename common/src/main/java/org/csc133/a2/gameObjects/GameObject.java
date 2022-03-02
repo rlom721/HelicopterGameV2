@@ -9,10 +9,17 @@ public abstract class GameObject implements Drawable {
     private Dimension dimension;
     private int color;
 
+    // public GameObject(){    }
+
     public GameObject(Point location, Dimension dimension, int color){
         this.location = location;
         this.dimension = dimension;
         this.color = color;
+    }
+
+    // TEMP FIX
+    public GameObject() {
+
     }
 
     public Point getLocation(){
@@ -22,6 +29,8 @@ public abstract class GameObject implements Drawable {
     public Dimension getDimension(){
         return dimension;
     }
+
+    public int getColor() { return color; }
 
     // change size for SOME classes
     public void adjustSize(){

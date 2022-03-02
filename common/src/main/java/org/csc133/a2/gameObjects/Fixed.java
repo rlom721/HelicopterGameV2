@@ -7,6 +7,9 @@ public abstract class Fixed extends GameObject {
 
     public Fixed(Point location, Dimension dimension, int color) {
         super(location, dimension, color);
+    }
 
+    public Fixed() {
+        super();
     }
 }

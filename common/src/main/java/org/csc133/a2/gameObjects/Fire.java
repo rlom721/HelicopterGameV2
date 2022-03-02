@@ -11,7 +11,7 @@ import static com.codename1.ui.CN.*;
 
 // ----------------------------------------------------------------------------
 //
-public class Fire {
+public class Fire extends Fixed{
     private Point location;
     final private Point center;
     private int size;
@@ -40,10 +40,6 @@ public class Fire {
         location = new Point(center.getX() - size / 2, center.getY() - size / 2);
     }
 
-    Point getLocation() {
-        return location;
-    }
-
     Point getCenter() {
         return center;
     }
@@ -52,7 +48,8 @@ public class Fire {
         return size;
     }
 
-    public void draw(Graphics g) {
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
         g.setColor(ColorUtil.MAGENTA);
 

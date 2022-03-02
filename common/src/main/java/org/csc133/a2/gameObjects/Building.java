@@ -5,8 +5,8 @@ import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 
 public class Building extends Fixed {
-    public Building(Point location, Dimension dimension) {
-        super(location, dimension);
+    public Building(Point location, Dimension dimension, int color) {
+        super(location, dimension, color);
     }
 
     @Override

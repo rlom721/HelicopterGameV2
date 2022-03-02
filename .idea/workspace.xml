@@ -4,24 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Create basic structure of project by making sub packages, laying out interfaces and separating classes into separate files.">
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/AccelerateCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/BrakeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/DrinkCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/ExitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/FightCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnLeftCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnRightCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/ControlCluster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/GlassCockpit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" afterDir="false" />
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Implemented GameObject class by adding constructor and getters. May add more later.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fixed.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fixed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/interfaces/Drawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/interfaces/Drawable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helipad.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helipad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/River.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/River.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -812,7 +804,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646033757093</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added necessary classes to views and commands packages (will be implemented later).">
+      <created>1646095854690</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646095854690</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implemented GameObject class by adding constructor and getters. May add more later.">
+      <created>1646095988159</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646095988160</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -829,6 +835,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit for A2." />
     <MESSAGE value="Create basic structure of project by making sub packages, laying out interfaces and separating classes into separate files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Create basic structure of project by making sub packages, laying out interfaces and separating classes into separate files." />
+    <MESSAGE value="Added necessary classes to views and commands packages (will be implemented later)." />
+    <MESSAGE value="Implemented GameObject class by adding constructor and getters. May add more later." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented GameObject class by adding constructor and getters. May add more later." />
   </component>
 </project>
