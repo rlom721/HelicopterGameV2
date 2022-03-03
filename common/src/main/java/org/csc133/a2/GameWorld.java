@@ -21,6 +21,7 @@ public class GameWorld{
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
 
+
     private enum Result {LOST, WON};
 
     public GameWorld(){
@@ -32,15 +33,14 @@ public class GameWorld{
     }
 
     void init(){
+//        INITIAL_FUEL = 25000;
+        river = new River();
+        helipad = new Helipad();
+        helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
         go = new ArrayList<>();
-//        river = new River();
-//        helipad = new Helipad();
-//        helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
-//        fires = new ArrayList<>();
-//        addFiresToRandomLocations();
-        go.add(new River());
-        go.add(new Helipad());
-        go.add(new Helicopter(helipad.getCenter(), INITIAL_FUEL));
+        go.add(river);
+        go.add(helipad);
+        go.add(helicopter);
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());

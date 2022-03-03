@@ -45,11 +45,15 @@ public class Helipad extends Fixed{
         return cSize;
     }
 
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
+    public void draw(Graphics g) {
         g.setColor(ColorUtil.GRAY);
         g.drawRect(location.getX(), location.getY(), sSize, sSize, 5);
         g.drawArc(location.getX() + cOffset / 2, location.getY() + cOffset / 2,
                 cSize, cSize, 0, 360);
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+        draw(g);
     }
 }

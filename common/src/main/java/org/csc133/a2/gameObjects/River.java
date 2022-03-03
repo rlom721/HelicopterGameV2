@@ -36,10 +36,14 @@ public class River extends Fixed {
         return getDimension().getHeight();
     }
 
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
+    public void draw(Graphics g) {
         g.setColor(ColorUtil.BLUE);
         g.drawRect( getLocation().getX(), getLocation().getY(),
-                    getDimension().getWidth(), getDimension().getHeight());
+                getDimension().getWidth(), getDimension().getHeight());
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+        draw(g);
     }
 }

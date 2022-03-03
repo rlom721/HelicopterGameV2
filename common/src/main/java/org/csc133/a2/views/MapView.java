@@ -10,7 +10,7 @@ public class MapView extends Container {
     GameWorld gw;
 
     public MapView(GameWorld gw){
-
+        this.gw = gw;
     }
 
     // draw all objects in gameworld ralative to container object

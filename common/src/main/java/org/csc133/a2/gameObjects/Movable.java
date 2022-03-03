@@ -8,4 +8,8 @@ public abstract class Movable extends GameObject{
     public Movable(Point location, Dimension dimension, int color) {
         super(location, dimension, color);
     }
+
+    public Movable() {
+
+    }
 }

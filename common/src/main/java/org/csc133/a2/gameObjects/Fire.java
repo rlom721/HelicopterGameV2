@@ -15,8 +15,10 @@ public class Fire extends Fixed{
     private Point location;
     final private Point center;
     private int size;
+    private int color;
 
     public Fire(int size, Point location) {
+
         this.size = size;
         this.location = location;
         this.center = new Point(location.getX() + size / 2,
@@ -48,8 +50,7 @@ public class Fire extends Fixed{
         return size;
     }
 
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
+    public void draw(Graphics g) {
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
         g.setColor(ColorUtil.MAGENTA);
 
@@ -59,5 +60,10 @@ public class Fire extends Fixed{
             g.drawString(Integer.toString(size),
                     location.getX() + size, location.getY() + size);
         }
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+        draw(g);
     }
 }
