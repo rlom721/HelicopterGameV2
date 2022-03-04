@@ -47,7 +47,7 @@ public class Game extends Form implements Runnable {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        gw.draw(g);
+        //gw.draw(g);
     }
 
     @Override

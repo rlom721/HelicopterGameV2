@@ -5,22 +5,9 @@ import com.codename1.ui.geom.Point;
 import org.csc133.a2.interfaces.Drawable;
 
 public abstract class GameObject implements Drawable {
-    private Point location;
-    private Dimension dimension;
-    private int color;
-
-    // public GameObject(){    }
-
-    public GameObject(Point location, Dimension dimension, int color){
-        this.location = location;
-        this.dimension = dimension;
-        this.color = color;
-    }
-
-    // TEMP FIX
-    public GameObject() {
-
-    }
+    Point location;
+    Dimension dimension;
+    int color;
 
     public Point getLocation(){
         return location;

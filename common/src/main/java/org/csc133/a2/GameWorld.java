@@ -41,13 +41,13 @@ public class GameWorld{
         go.add(river);
         go.add(helipad);
         go.add(helicopter);
+        /*
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
+        */
     }
 
-    // update state of game
-    //
     void tick(){
         helicopter.move();
         helicopter.reduceFuel();
@@ -185,13 +185,15 @@ public class GameWorld{
         return rand.nextInt(upper-lower) + lower;
     }
 
+    /*
     void draw(Graphics g){
         // call MapView here?
-//        g.clearRect(0, 0, displayWidth, displayHeight);
-//        river.draw(g);
-//        helipad.draw(g);
-//        for(Fire fire : fires)
-//            fire.draw(g);
-//        helicopter.draw(g);
+        g.clearRect(0, 0, displayWidth, displayHeight);
+        river.draw(g);
+        helipad.draw(g);
+        for(Fire fire : fires)
+            fire.draw(g);
+        helicopter.draw(g);
     }
+    */
 }

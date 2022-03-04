@@ -5,11 +5,4 @@ import com.codename1.ui.geom.Point;
 
 public abstract class Fixed extends GameObject {
 
-    public Fixed() {
-        super();
-    }
-
-    public Fixed(Point location, Dimension dimension, int color) {
-        super(location, dimension, color);
-    }
 }
