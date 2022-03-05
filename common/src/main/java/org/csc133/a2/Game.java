@@ -33,7 +33,6 @@ public class Game extends Form implements Runnable {
 
     public Game() {
         gw = new GameWorld();
-
         mapView = new MapView(gw);
         this.getToolbar().hideToolbar();
         this.getAllStyles().setBgColor(ColorUtil.BLACK);
@@ -53,7 +52,7 @@ public class Game extends Form implements Runnable {
         UITimer timer = new UITimer(this);
         timer.schedule(20, true, this);
 
-        this.show();
+//        this.show();
     }
 
     @Override
@@ -64,6 +63,7 @@ public class Game extends Form implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("run() is running...");
         gw.tick();
         repaint();
     }
