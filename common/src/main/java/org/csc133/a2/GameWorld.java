@@ -50,7 +50,7 @@ public class GameWorld{
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
-         */
+        */
 
     }
 

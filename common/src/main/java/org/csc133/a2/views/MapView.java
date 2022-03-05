@@ -20,7 +20,7 @@ public class MapView extends Container {
         gw.init();
     }
 
-    // draw all objects in gameworld ralative to container object
+    // draw all objects in gameworld relative to container object
     //
     @Override
     public void paint(Graphics g) {

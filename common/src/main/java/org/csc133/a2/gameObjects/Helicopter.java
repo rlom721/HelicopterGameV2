@@ -24,7 +24,6 @@ public class Helicopter extends Movable implements Steerable {
     private double angle;
 
     public Helicopter(Point helipadCenter, int initFuel) {
-        super();
         displayWidth = Game.DISP_W;
         displayHeight = Game.DISP_H;
         fuel = initFuel;
