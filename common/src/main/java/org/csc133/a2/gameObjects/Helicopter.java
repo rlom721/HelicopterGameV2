@@ -3,6 +3,7 @@ package org.csc133.a2.gameObjects;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 import org.csc133.a2.interfaces.Steerable;
@@ -14,7 +15,7 @@ import static com.codename1.ui.CN.*;
 public class Helicopter extends Movable implements Steerable {
     private Point location, center;
     final private int size;
-    final private int displayWidth, displayHeight;
+//    final private int displayWidth, displayHeight;
     private int fuel, water;
     private int speed;
     private int heading;
@@ -24,18 +25,21 @@ public class Helicopter extends Movable implements Steerable {
     private double angle;
 
     public Helicopter(Point helipadCenter, int initFuel) {
-        displayWidth = Game.DISP_W;
-        displayHeight = Game.DISP_H;
+//        displayWidth = Game.DISP_W;
+//        displayHeight = Game.DISP_H;
         fuel = initFuel;
         water = 0;
         speed = 0;
         heading = 0;
         angle = Math.toRadians(heading);
-        size = displayHeight / 40;
+        size = Game.DISP_H / 40;
         headingRadius = size * 2;
 
         center = new Point(helipadCenter.getX(), helipadCenter.getY() + size);
-        location = new Point(center.getX() - size / 2, center.getY() - size / 2);
+        this.location = new Point(  center.getX() - size / 2,
+                                    center.getY() - size / 2);
+        this.color = ColorUtil.YELLOW;
+//        this.dimension = new Dimension();
     }
 
     public void turnRight() {
@@ -151,7 +155,7 @@ public class Helicopter extends Movable implements Steerable {
     public void draw(Graphics g) {
         angle = Math.toRadians(heading) + Math.PI / 2;
 
-        g.setColor(ColorUtil.YELLOW);
+        g.setColor(color);
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
 
         // draw helicopter body and show stats
@@ -173,12 +177,12 @@ public class Helicopter extends Movable implements Steerable {
 
     @Override
     public void steerLeft() {
-
+        this.turnLeft();
     }
 
     @Override
     public void steerRight() {
-
+        this.turnRight();
     }
 
     @Override

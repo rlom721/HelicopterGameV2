@@ -46,11 +46,9 @@ public class GameWorld{
         go.add(river);
         go.add(helipad);
         go.add(helicopter);
-        /*
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
-        */
 
     }
 
@@ -97,24 +95,31 @@ public class GameWorld{
     }
 
     private void randomlyGrowFires() {
-        if(fires.size()>0 && getRand(0, 5) == 0) {
-            int randomFire = getRand(0, fires.size());
-            if(fires.get(randomFire).size() > 0)
-                fires.get(randomFire).grow();
+        for(GameObject go : getGameObjectCollection()) {
+            if (go instanceof Fire) {
+                if (fires.size() > 0 && getRand(0, 5) == 0) {
+                    int randomFire = getRand(0, fires.size());
+                    if (fires.get(randomFire).size() > 0)
+                        fires.get(randomFire).grow();
+                }
+            }
         }
     }
 
     private void fightFiresIfHeliIsNear() {
         ArrayList<Fire> deadFires = new ArrayList<>();
-        for(Fire fire : fires){
-            if(helicopter.isWithinRangeOfFire(fire))
-                helicopter.fight(fire);
+        for(GameObject go : getGameObjectCollection()) {
+            if (go instanceof Fire) {
+                Fire fire = (Fire)go;
+                if (helicopter.isWithinRangeOfFire(fire))
+                    helicopter.fight(fire);
 
-            if(fire.size() == 0)
-                deadFires.add(fire);
+                if (fire.size() == 0)
+                    deadFires.add(fire);
+            }
         }
         helicopter.dumpWater();
-        fires.removeAll(deadFires);
+        go.removeAll(deadFires);
     }
 
     void gameOver(Result result){

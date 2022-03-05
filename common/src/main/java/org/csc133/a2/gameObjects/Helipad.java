@@ -14,22 +14,19 @@ public class Helipad extends Fixed{
     final private int sSize;
     final private int cSize;
     final private int cOffset;
-    private int displayWidth, displayHeight;
 
     public Helipad() {
-        displayWidth = Game.DISP_W;
-        displayHeight = Game.DISP_H;
-        sSize = Game.DISP_H / 8;
-
-        this.dimension = new Dimension(sSize, sSize);
+        this.dimension = new Dimension(Game.DISP_H/8, Game.DISP_H/8);
         this.color = ColorUtil.GRAY;
+
+        sSize = dimension.getWidth();
         cOffset = 40;
         cSize = sSize - cOffset;
 
         // located at half the screen width and its width above the bottom
         //
-        this.location = new Point(  displayWidth/2 - sSize/2,
-                                    displayHeight - (int)(sSize*1.5));
+        this.location = new Point(  Game.DISP_W/2 - sSize/2,
+                                    Game.DISP_H - (int)(sSize*1.5));
 
         center = new Point( location.getX() + sSize / 2,
                             location.getY() + sSize / 2);
