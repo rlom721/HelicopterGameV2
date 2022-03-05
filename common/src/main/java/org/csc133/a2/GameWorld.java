@@ -3,6 +3,7 @@ package org.csc133.a2;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.gameObjects.*;
 
@@ -13,6 +14,7 @@ import java.util.Random;
 // Holds state of game, determines win/lose conditions and links Game objects.
 //
 public class GameWorld{
+    private Dimension worldSize;
     private River river;
     private Helipad helipad;
     private Helicopter helicopter;
@@ -21,6 +23,9 @@ public class GameWorld{
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
 
+    public void setDimension(Dimension worldSize) {
+        this.worldSize = worldSize;
+    }
 
     private enum Result {LOST, WON};
 
@@ -32,7 +37,7 @@ public class GameWorld{
         init();
     }
 
-    void init(){
+    public void init(){
 //        INITIAL_FUEL = 25000;
         river = new River();
         helipad = new Helipad();
@@ -45,7 +50,8 @@ public class GameWorld{
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
-        */
+         */
+
     }
 
     void tick(){

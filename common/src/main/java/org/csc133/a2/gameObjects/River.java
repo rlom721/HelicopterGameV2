@@ -18,10 +18,6 @@ public class River extends Fixed {
         this.color = ColorUtil.BLUE;
     }
 
-//    public Point getLocation() {
-//        return super.getLocation();
-//    }
-
     int width() {
         return dimension.getWidth();
     }
