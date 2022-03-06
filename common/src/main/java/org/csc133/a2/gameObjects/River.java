@@ -8,8 +8,6 @@ import org.csc133.a2.Game;
 
 import java.awt.*;
 
-// ----------------------------------------------------------------------------
-//
 public class River extends Fixed {
 
     public River() {
@@ -18,14 +16,9 @@ public class River extends Fixed {
         setColor(ColorUtil.BLUE);
     }
 
-    int width() {
-        return getDimension().getWidth();
-    }
+    public int width() { return getDimension().getWidth(); }
 
-    public int height() {
-        return getDimension().getHeight();
-    }
-
+    public int height() { return getDimension().getHeight(); }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

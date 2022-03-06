@@ -63,7 +63,7 @@ public class Game extends Form implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("run() is running...");
+//        System.out.println("run() is running...");
         gw.tick();
         repaint();
     }

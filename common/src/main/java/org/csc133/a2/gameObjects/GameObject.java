@@ -8,7 +8,6 @@ public abstract class GameObject implements Drawable {
     private Point location;
     private Dimension dimension;
     private int color;
-//    private boolean isResizable = True;
 
     public void setLocation(Point location){ this.location = location; }
 

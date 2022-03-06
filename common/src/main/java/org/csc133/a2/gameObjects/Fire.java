@@ -10,12 +10,13 @@ import java.util.Random;
 
 import static com.codename1.ui.CN.*;
 
-// ----------------------------------------------------------------------------
-//
 public class Fire extends Fixed{
-//    private Point location;
     final private Point center;
     private int size;
+
+//    public Fire(int size){
+//
+//    }
 
     public Fire(int size, Point location) {
         this.size = size;
@@ -43,15 +44,12 @@ public class Fire extends Fixed{
         setLocation(new Point(center.getX() - size/2, center.getY() - size/2));
     }
 
-    Point getCenter() {
-        return center;
-    }
+    Point getCenter() { return center; }
 
-    public int size() {
-        return size;
-    }
+    public int size() { return size; }
 
-    public void draw(Graphics g) {
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
         g.setColor(ColorUtil.MAGENTA);
 
@@ -61,10 +59,5 @@ public class Fire extends Fixed{
             g.drawString(Integer.toString(size),
                     getLocation().getX() + size, getLocation().getY() + size);
         }
-    }
-
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
-        draw(g);
     }
 }

@@ -10,13 +10,9 @@ import org.csc133.a2.interfaces.Steerable;
 
 import static com.codename1.ui.CN.*;
 
-// ----------------------------------------------------------------------------
-//
 public class Helicopter extends Movable implements Steerable {
-//    private Point location,
     private Point center;
     final private int size;
-//    final private int displayWidth, displayHeight;
     private int fuel, water;
     private int speed;
     private int heading;
@@ -26,8 +22,6 @@ public class Helicopter extends Movable implements Steerable {
     private double angle;
 
     public Helicopter(Point helipadCenter, int initFuel) {
-//        displayWidth = Game.DISP_W;
-//        displayHeight = Game.DISP_H;
         fuel = initFuel;
         water = 0;
         speed = 0;
@@ -40,19 +34,7 @@ public class Helicopter extends Movable implements Steerable {
         setLocation(new Point(  center.getX() - size / 2,
                                     center.getY() - size / 2));
         setColor(ColorUtil.YELLOW);
-//        this.dimension = new Dimension();
-    }
-
-    public void turnRight() {
-        if (heading < 0 || heading > 360)
-            heading = 360;
-        heading -= 15;
-    }
-
-    public void turnLeft() {
-        if (heading < 0 || heading > 360)
-            heading = 0;
-        heading += 15;
+        setDimension(new Dimension(size, size));
     }
 
     public void move() {
@@ -102,8 +84,6 @@ public class Helicopter extends Movable implements Steerable {
     }
 
     public boolean isWithinRangeOfFire(Fire fire) {
-        // fire bounding box values
-        //
         int fX1 = fire.getLocation().getX() - 10;
         int fX2 = fire.getLocation().getX() + fire.size() + 10;
         int fY1 = fire.getLocation().getY() - 10;
@@ -131,8 +111,6 @@ public class Helicopter extends Movable implements Steerable {
     // x1: left bound, x2: right bound, y1: upper bound, y2 lower bound
     //
     private boolean hasCollided(int x1, int x2, int y1, int y2) {
-        // set helicopter bounding box values
-        //
         int hX1 = getLocation().getX();
         int hX2 = getLocation().getX() + size;
         int hY1 = getLocation().getY();
@@ -153,7 +131,22 @@ public class Helicopter extends Movable implements Steerable {
         return Math.sqrt(x * x + y * y) <= (double) (diameter / 2);
     }
 
-    public void draw(Graphics g) {
+    @Override
+    public void steerLeft() {
+        if (heading < 0 || heading > 360)
+            heading = 0;
+        heading += 15;
+    }
+
+    @Override
+    public void steerRight() {
+        if (heading < 0 || heading > 360)
+            heading = 360;
+        heading -= 15;
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
         angle = Math.toRadians(heading) + Math.PI / 2;
 
         g.setColor(getColor());
@@ -174,20 +167,5 @@ public class Helicopter extends Movable implements Steerable {
         int heY = center.getY() - (int) (headingRadius * Math.sin(angle));
 
         g.drawLine(center.getX(), center.getY(), heX, heY);
-    }
-
-    @Override
-    public void steerLeft() {
-        this.turnLeft();
-    }
-
-    @Override
-    public void steerRight() {
-        this.turnRight();
-    }
-
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
-        draw(g);
     }
 }
