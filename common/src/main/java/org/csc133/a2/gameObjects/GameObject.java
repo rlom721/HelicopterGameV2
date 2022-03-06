@@ -5,19 +5,24 @@ import com.codename1.ui.geom.Point;
 import org.csc133.a2.interfaces.Drawable;
 
 public abstract class GameObject implements Drawable {
-    Point location;
-    Dimension dimension;
-    int color;
+    private Point location;
+    private Dimension dimension;
+    private int color;
+//    private boolean isResizable = True;
 
-    public Point getLocation(){
-        return location;
+    public void setLocation(Point location){ this.location = location; }
+
+    public void setDimension(Dimension dimension) {
+        this.dimension = dimension;
     }
 
-    public Dimension getDimension(){
-        return dimension;
-    }
+    public void setColor(int color) { this.color = color; }
 
-    public int getColor() { return color; }
+    public Point getLocation(){ return this.location; }
+
+    public Dimension getDimension() { return this.dimension; }
+
+    public int getColor() { return this.color; }
 
     // change size for SOME classes
     public void adjustSize(){

@@ -16,20 +16,20 @@ public class Helipad extends Fixed{
     final private int cOffset;
 
     public Helipad() {
-        this.dimension = new Dimension(Game.DISP_H/8, Game.DISP_H/8);
-        this.color = ColorUtil.GRAY;
+        setDimension(new Dimension(Game.DISP_H/8, Game.DISP_H/8));
+        setColor(ColorUtil.GRAY);
 
-        sSize = dimension.getWidth();
+        sSize = getDimension().getWidth();
         cOffset = 40;
         cSize = sSize - cOffset;
 
         // located at half the screen width and its width above the bottom
         //
-        this.location = new Point(  Game.DISP_W/2 - sSize/2,
-                                    Game.DISP_H - (int)(sSize*1.5));
+        setLocation(new Point(  Game.DISP_W/2 - sSize/2,
+                                    Game.DISP_H - (int)(sSize*1.5)));
 
-        center = new Point( location.getX() + sSize / 2,
-                            location.getY() + sSize / 2);
+        center = new Point( getLocation().getX() + sSize / 2,
+                            getLocation().getY() + sSize / 2);
     }
 
     public Point getCenter() {
@@ -41,10 +41,12 @@ public class Helipad extends Fixed{
     }
 
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.drawRect(location.getX(), location.getY(), sSize, sSize, 5);
-        g.drawArc(location.getX() + cOffset / 2, location.getY() + cOffset / 2,
-                cSize, cSize, 0, 360);
+        g.setColor(getColor());
+        g.drawRect(getLocation().getX(), getLocation().getY(),
+                    sSize, sSize, 5);
+        g.drawArc(  getLocation().getX() + cOffset / 2,
+                    getLocation().getY() + cOffset / 2,
+                    cSize, cSize, 0, 360);
     }
 
     @Override

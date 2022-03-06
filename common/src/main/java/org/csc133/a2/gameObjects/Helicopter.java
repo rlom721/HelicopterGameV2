@@ -13,7 +13,8 @@ import static com.codename1.ui.CN.*;
 // ----------------------------------------------------------------------------
 //
 public class Helicopter extends Movable implements Steerable {
-    private Point location, center;
+//    private Point location,
+    private Point center;
     final private int size;
 //    final private int displayWidth, displayHeight;
     private int fuel, water;
@@ -36,9 +37,9 @@ public class Helicopter extends Movable implements Steerable {
         headingRadius = size * 2;
 
         center = new Point(helipadCenter.getX(), helipadCenter.getY() + size);
-        this.location = new Point(  center.getX() - size / 2,
-                                    center.getY() - size / 2);
-        this.color = ColorUtil.YELLOW;
+        setLocation(new Point(  center.getX() - size / 2,
+                                    center.getY() - size / 2));
+        setColor(ColorUtil.YELLOW);
 //        this.dimension = new Dimension();
     }
 
@@ -57,7 +58,7 @@ public class Helicopter extends Movable implements Steerable {
     public void move() {
         center = new Point(center.getX() + (int) (speed * Math.cos(angle)),
                 center.getY() - (int) (speed * Math.sin(angle)));
-        location = new Point(center.getX() - size / 2, center.getY() - size / 2);
+        setLocation(new Point(center.getX() - size/2, center.getY() - size/2));
     }
 
     public void increaseSpeed() {
@@ -132,10 +133,10 @@ public class Helicopter extends Movable implements Steerable {
     private boolean hasCollided(int x1, int x2, int y1, int y2) {
         // set helicopter bounding box values
         //
-        int hX1 = location.getX();
-        int hX2 = location.getX() + size;
-        int hY1 = location.getY();
-        int hY2 = location.getY() + size;
+        int hX1 = getLocation().getX();
+        int hX2 = getLocation().getX() + size;
+        int hY1 = getLocation().getY();
+        int hY2 = getLocation().getY() + size;
 
         // check bounding box conditions (these are true if NO collision)
         //
@@ -155,17 +156,17 @@ public class Helicopter extends Movable implements Steerable {
     public void draw(Graphics g) {
         angle = Math.toRadians(heading) + Math.PI / 2;
 
-        g.setColor(color);
+        g.setColor(getColor());
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
 
         // draw helicopter body and show stats
         //
-        g.fillArc(location.getX(), location.getY(), size, size,
+        g.fillArc(getLocation().getX(), getLocation().getY(), size, size,
                 0, 360);
-        g.drawString("F:  " + fuel, location.getX() - size / 2,
-                location.getY() + size * 2);
-        g.drawString("W: " + water, location.getX() - size / 2,
-                location.getY() + size * 3);
+        g.drawString("F:  " + fuel, getLocation().getX() - size / 2,
+                getLocation().getY() + size * 2);
+        g.drawString("W: " + water, getLocation().getX() - size / 2,
+                getLocation().getY() + size * 3);
 
         // use polar to coordinate conversion for heading line position
         //

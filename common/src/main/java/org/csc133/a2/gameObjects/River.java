@@ -13,23 +13,24 @@ import java.awt.*;
 public class River extends Fixed {
 
     public River() {
-        this.dimension = new Dimension(Game.DISP_W, Game.DISP_H/10);
-        this.location = new Point(0, Game.DISP_H / 5);
-        this.color = ColorUtil.BLUE;
+        setDimension(new Dimension(Game.DISP_W, Game.DISP_H/10));
+        setLocation(new Point(0, Game.DISP_H / 5));
+        setColor(ColorUtil.BLUE);
     }
 
     int width() {
-        return dimension.getWidth();
+        return getDimension().getWidth();
     }
 
     public int height() {
-        return dimension.getHeight();
+        return getDimension().getHeight();
     }
 
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        g.setColor(color);
-        g.drawRect( location.getX(), location.getY(), width(), height());
+        g.setColor(getColor());
+        g.drawRect( getLocation().getX(), getLocation().getY(),
+                    width(), height());
     }
 }

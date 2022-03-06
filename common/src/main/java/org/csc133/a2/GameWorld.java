@@ -51,7 +51,6 @@ public class GameWorld{
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
         go.add(helicopter);
-
     }
 
     public void tick(){
@@ -99,7 +98,7 @@ public class GameWorld{
     private void randomlyGrowFires() {
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
-                if (getRand(0, 5) == 0) {
+                if (getRand(0, 7) == 0) {
 //                    int randomFire = getRand(0, fires.size());
 //                    if (fires.get(randomFire).size() > 0)
                     ((Fire)go).grow();
@@ -132,7 +131,7 @@ public class GameWorld{
                 "Heck Yeah!", "Some Other Time");
 
         if(replayGame)
-            new Game();
+            init(); //new Game();
         else
             quit();
     }
