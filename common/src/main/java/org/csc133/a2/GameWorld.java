@@ -57,7 +57,7 @@ public class GameWorld{
     public void tick(){
         helicopter.move();
         helicopter.reduceFuel();
-//        randomlyGrowFires();
+        randomlyGrowFires();
         endGame();
     }
 
@@ -99,10 +99,10 @@ public class GameWorld{
     private void randomlyGrowFires() {
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
-                if (fires.size() > 0 && getRand(0, 5) == 0) {
-                    int randomFire = getRand(0, fires.size());
-                    if (fires.get(randomFire).size() > 0)
-                        fires.get(randomFire).grow();
+                if (getRand(0, 5) == 0) {
+//                    int randomFire = getRand(0, fires.size());
+//                    if (fires.get(randomFire).size() > 0)
+                    ((Fire)go).grow();
                 }
             }
         }

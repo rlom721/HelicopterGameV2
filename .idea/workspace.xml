@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Fixed bug where helicopter was not moving (run stopped executing because of NullPointerException)">
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="GameObject collection successfully implemented for iterating through fires.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/compliance-check.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/compliance-check.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/AppMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld$Result.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fire.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fixed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/GameObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helicopter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helipad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Movable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/River.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/interfaces/Drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/interfaces/Steerable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -865,7 +873,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646464832578</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="GameObject collection successfully implemented for iterating through fires.">
+      <created>1646543393296</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1646543393296</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -891,7 +906,8 @@
     <MESSAGE value="Refactored River class and removed old draw method." />
     <MESSAGE value="Refactored Helipad class, setting fields from super." />
     <MESSAGE value="Fixed bug where helicopter was not moving (run stopped executing because of NullPointerException)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where helicopter was not moving (run stopped executing because of NullPointerException)" />
+    <MESSAGE value="GameObject collection successfully implemented for iterating through fires." />
+    <option name="LAST_COMMIT_MESSAGE" value="GameObject collection successfully implemented for iterating through fires." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
