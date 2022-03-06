@@ -42,14 +42,16 @@ public class GameWorld{
         river = new River();
         helipad = new Helipad();
         helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
+//        fires = new ArrayList<>();
         go = new ArrayList<>();
         go.add(river);
         go.add(helipad);
+
+        go.add(addFireAboveLeftRiver());
+        go.add(addFireAboveRightRiver());
+        go.add(addFireBelowCenterRiver());
         go.add(helicopter);
 
-//        go.add(addFireAboveLeftRiver());
-//        go.add(addFireAboveRightRiver());
-//        go.add(addFireBelowCenterRiver());
     }
 
     public void tick(){
@@ -111,15 +113,18 @@ public class GameWorld{
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
                 Fire fire = (Fire)go;
-                if (helicopter.isWithinRangeOfFire(fire))
-                    helicopter.fight(fire);
+//        for(Fire fire : fires) {
+            if (helicopter.isWithinRangeOfFire(fire))
+                helicopter.fight(fire);
 
-                if (fire.size() == 0)
-                    deadFires.add(fire);
+            if (fire.size() == 0)
+                deadFires.add(fire);
+//            }
             }
         }
         helicopter.dumpWater();
         go.removeAll(deadFires);
+//        fires.removeAll(deadFires);
     }
 
     void gameOver(Result result){
@@ -151,8 +156,12 @@ public class GameWorld{
     }
 
     boolean allFiresAreOut(){
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Fire)
+                return false;
+        }
 //        return fires.size() == 0;
-        return false;
+        return true;
     }
 
 //    private void addFiresToRandomLocations(){
@@ -166,7 +175,7 @@ public class GameWorld{
         Point fLocation = new Point(getRand(displayWidth/2,
                 displayWidth-fSize),
                 getRand(0, river.getLocation().getY()));
-        fires.add(new Fire(fSize, fLocation));
+//        fires.add(new Fire(fSize, fLocation));
         return new Fire(fSize, fLocation);
     }
 
@@ -177,7 +186,7 @@ public class GameWorld{
         Point fLocation = new Point(getRand(displayWidth/2 - fSize,
                 displayWidth/2 + fSize),
                 getRand(riverLowerBound, aboveHelipad));
-        fires.add(new Fire(fSize, fLocation));
+//        fires.add(new Fire(fSize, fLocation));
         return new Fire(fSize, fLocation);
     }
 
@@ -186,7 +195,7 @@ public class GameWorld{
         Point fLocation = new Point(getRand(displayWidth/4,
                 displayWidth/2-fSize),
                 getRand(0, river.getLocation().getY()));
-         fires.add(new Fire(fSize, fLocation));
+//        fires.add(new Fire(fSize, fLocation));
         return new Fire(fSize, fLocation);
     }
 

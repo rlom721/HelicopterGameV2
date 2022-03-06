@@ -12,15 +12,14 @@ import static com.codename1.ui.CN.*;
 // ----------------------------------------------------------------------------
 //
 public class Fire extends Fixed{
-    private Point location;
+//    private Point location;
     final private Point center;
     private int size;
-    private int color;
 
     public Fire(int size, Point location) {
-
         this.size = size;
         this.location = location;
+        this.color = ColorUtil.MAGENTA;
         this.center = new Point(location.getX() + size / 2,
                 location.getY() + size / 2);
     }
