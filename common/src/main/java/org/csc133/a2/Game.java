@@ -8,6 +8,7 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -43,9 +44,11 @@ public class Game extends Form implements Runnable {
         glassCockpit = new GlassCockpit(gw);
         controlCluster = new ControlCluster(gw);
 
-        this.getToolbar().hideToolbar();
         mapView.getAllStyles().setBgColor(ColorUtil.BLACK);
         mapView.getAllStyles().setBgTransparency(255);
+        controlCluster.setSize(new Dimension(Game.DISP_W, Game.DISP_H/5));
+
+        this.getToolbar().hideToolbar();
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, mapView);
         this.add(BorderLayout.NORTH, glassCockpit);
@@ -53,13 +56,6 @@ public class Game extends Form implements Runnable {
 
         // key listeners to control user input
         //
-//        addKeyListener(-93, (evt) -> gw.processKeyPress(-93));
-//        addKeyListener(-94, (evt) -> gw.processKeyPress(-94));
-//        addKeyListener(-91, (evt) -> gw.processKeyPress(-91));
-//        addKeyListener(-92, (evt) -> gw.processKeyPress(-92));
-//        addKeyListener('f', (evt) -> gw.processKeyPress('f'));
-//        addKeyListener('d', (evt) -> gw.processKeyPress('d'));
-//        addKeyListener('Q', (evt) -> gw.quit());
         addKeyListener(-93, new TurnLeftCommand(gw));
         addKeyListener(-94, new TurnRightCommand(gw));
         addKeyListener(-91, new AccelerateCommand(gw));

@@ -57,33 +57,25 @@ public class GameWorld{
     void processKeyPress(int keyCode){
         switch(keyCode){
             case -93:
-//                helicopter.steerLeft();
                 turnLeft();
                 break;
             case -94:
-//                helicopter.steerRight();
                 turnRight();
                 break;
             case -91:
-//                helicopter.increaseSpeed();
                 accelerate();
                 break;
             case -92:
-//                helicopter.decreaseSpeed();
                 brake();
                 break;
             case 'f':
-//                fightFiresIfHeliIsNear();
                 fight();
                 break;
             case 'd':
-//                if(helicopter.isAboveRiver(river))  // move to drink method?
-//                    helicopter.drink();
                 drink();
                 break;
         }
     }
-
 
     public void setDimension(Dimension worldSize) {
         this.worldSize = worldSize;

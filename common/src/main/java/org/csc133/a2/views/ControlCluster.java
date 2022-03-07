@@ -31,12 +31,18 @@ public class ControlCluster extends Container {
         left.setCommand(new TurnLeftCommand(gw));
         right.setCommand(new TurnRightCommand(gw));
 
-        this.add(BorderLayout.WEST, left);
-        this.add(BorderLayout.WEST, right);
-        this.add(BorderLayout.WEST, fight);
+        Container westCommands = new Container(new BorderLayout());
+        westCommands.add(BorderLayout.WEST, left);
+        westCommands.add(BorderLayout.CENTER, right);
+        westCommands.add(BorderLayout.EAST, fight);
+        this.add(BorderLayout.WEST, westCommands);
+
         this.add(BorderLayout.CENTER, exit);
-        this.add(BorderLayout.EAST, drink);
-        this.add(BorderLayout.EAST, brake);
-        this.add(BorderLayout.EAST, accelerate);
+
+        Container eastCommands = new Container(new BorderLayout());
+        eastCommands.add(BorderLayout.WEST, drink);
+        eastCommands.add(BorderLayout.CENTER, brake);
+        eastCommands.add(BorderLayout.EAST, accelerate);
+        this.add(BorderLayout.EAST, eastCommands);
     }
 }
