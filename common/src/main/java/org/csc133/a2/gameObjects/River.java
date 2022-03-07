@@ -23,7 +23,8 @@ public class River extends Fixed {
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(getColor());
-        g.drawRect( getLocation().getX(), getLocation().getY(),
+        g.drawRect( containerOrigin.getX() + getLocation().getX(),
+                    containerOrigin.getY() + getLocation().getY(),
                     width(), height());
     }
 }

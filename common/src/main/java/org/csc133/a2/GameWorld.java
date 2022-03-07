@@ -22,10 +22,6 @@ public class GameWorld{
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
 
-    public void setDimension(Dimension worldSize) {
-        this.worldSize = worldSize;
-    }
-
     private enum Result {LOST, WON};
 
     public GameWorld(){
@@ -61,25 +57,65 @@ public class GameWorld{
     void processKeyPress(int keyCode){
         switch(keyCode){
             case -93:
-                helicopter.steerLeft();
+//                helicopter.steerLeft();
+                turnLeft();
                 break;
             case -94:
-                helicopter.steerRight();
+//                helicopter.steerRight();
+                turnRight();
                 break;
             case -91:
-                helicopter.increaseSpeed();
+//                helicopter.increaseSpeed();
+                accelerate();
                 break;
             case -92:
-                helicopter.decreaseSpeed();
+//                helicopter.decreaseSpeed();
+                brake();
                 break;
             case 'f':
-                fightFiresIfHeliIsNear();
+//                fightFiresIfHeliIsNear();
+                fight();
                 break;
             case 'd':
-                if(helicopter.isAboveRiver(river))  // move to drink method?
-                    helicopter.drink();
+//                if(helicopter.isAboveRiver(river))  // move to drink method?
+//                    helicopter.drink();
+                drink();
                 break;
         }
+    }
+
+
+    public void setDimension(Dimension worldSize) {
+        this.worldSize = worldSize;
+    }
+
+    public void accelerate() {
+        helicopter.increaseSpeed();
+    }
+
+    public void brake() {
+        helicopter.decreaseSpeed();
+    }
+
+    public void drink() {
+        if(helicopter.isAboveRiver(river))  // move to drink method?
+            helicopter.drink();
+    }
+
+    public void exit() {
+        quit();
+    }
+
+    public void fight() {
+        fightFiresIfHeliIsNear();
+    }
+
+    public void turnLeft() {
+        helicopter.steerLeft();
+    }
+
+    public void turnRight() {
+        helicopter.steerRight();
     }
 
     public ArrayList<GameObject> getGameObjectCollection() {
@@ -153,6 +189,18 @@ public class GameWorld{
                 return false;
         }
         return true;
+    }
+
+    public String getHeading() {
+        return Integer.toString(helicopter.getHeading());
+    }
+
+    public String getSpeed() {
+        return Integer.toString(helicopter.getSpeed());
+    }
+
+    public String getFuel() {
+        return Integer.toString(helicopter.fuel());
     }
 
     private Building addBuildingAboveRiver(){

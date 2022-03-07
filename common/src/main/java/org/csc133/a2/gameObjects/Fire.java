@@ -54,10 +54,12 @@ public class Fire extends Fixed{
         g.setColor(ColorUtil.MAGENTA);
 
         if (size > 0) {
-            g.fillArc(getLocation().getX(), getLocation().getY(), size, size,
+            g.fillArc(containerOrigin.getX() + getLocation().getX(),
+                    containerOrigin.getY() + getLocation().getY(), size, size,
                     0, 360);
             g.drawString(Integer.toString(size),
-                    getLocation().getX() + size, getLocation().getY() + size);
+                    containerOrigin.getX() + getLocation().getX() + size,
+                    containerOrigin.getY() + getLocation().getY() + size);
         }
     }
 }

@@ -23,7 +23,7 @@ public class Helipad extends Fixed{
         // located at half the screen width and its width above the bottom
         //
         setLocation(new Point(  Game.DISP_W/2 - sSize/2,
-                                Game.DISP_H - (int)(sSize*1.5)));
+                                Game.DISP_H - (int)(sSize*2.5)));
 
         center = new Point( getLocation().getX() + sSize / 2,
                             getLocation().getY() + sSize / 2);
@@ -36,10 +36,11 @@ public class Helipad extends Fixed{
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(getColor());
-        g.drawRect(getLocation().getX(), getLocation().getY(),
-                sSize, sSize, 5);
-        g.drawArc(  getLocation().getX() + cOffset / 2,
-                getLocation().getY() + cOffset / 2,
-                cSize, cSize, 0, 360);
+        g.drawRect( containerOrigin.getX() + getLocation().getX(),
+                    containerOrigin.getY() + getLocation().getY(),
+                        sSize, sSize, 5);
+        g.drawArc(  containerOrigin.getX() + getLocation().getX() + cOffset/2,
+                    containerOrigin.getY() + getLocation().getY() + cOffset/2,
+                        cSize, cSize, 0, 360);
     }
 }

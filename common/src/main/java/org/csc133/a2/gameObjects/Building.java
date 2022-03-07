@@ -25,16 +25,21 @@ public class Building extends Fixed {
 //                                    getLocation().getY() ));
     }
 
+    public int width(){ return getDimension().getWidth(); }
+
+    public int height(){ return getDimension().getHeight(); }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(getColor());
-        g.drawRect( getLocation().getX(), getLocation().getY(),
-                    getDimension().getWidth(), getDimension().getHeight(), 5);
+        g.drawRect(containerOrigin.getX() + getLocation().getX(),
+                   containerOrigin.getY() + getLocation().getY(),
+                        width(), height(), 5);
         g.drawString("V:  " + value,
-                    getLocation().getX() + getDimension().getWidth(),
-                    getLocation().getY() + getDimension().getHeight());
+                    containerOrigin.getX() + getLocation().getX() + width(),
+                    containerOrigin.getY() + getLocation().getY() + height());
         g.drawString("D: " + damage,
-                    getLocation().getX() + getDimension().getWidth(),
-                    getLocation().getY() + getDimension().getHeight() + 30);
+                containerOrigin.getX() + getLocation().getX() + width(),
+                containerOrigin.getY() + getLocation().getY() + height() + 30);
     }
 }

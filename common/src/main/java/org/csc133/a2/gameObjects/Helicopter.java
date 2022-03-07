@@ -70,10 +70,6 @@ public class Helicopter extends Movable implements Steerable {
         if (fuel < 0) fuel = 0;
     }
 
-    public int fuel() {
-        return fuel;
-    }
-
     public boolean isAboveRiver(River river) {
         int rX1 = river.getLocation().getX();
         int rX2 = river.getLocation().getX() + river.width();
@@ -145,6 +141,18 @@ public class Helicopter extends Movable implements Steerable {
         heading -= 15;
     }
 
+    public int getHeading() {
+        return heading;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int fuel() {
+        return fuel;
+    }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         angle = Math.toRadians(heading) + Math.PI / 2;
@@ -154,18 +162,24 @@ public class Helicopter extends Movable implements Steerable {
 
         // draw helicopter body and show stats
         //
-        g.fillArc(getLocation().getX(), getLocation().getY(), size, size,
+        g.fillArc(containerOrigin.getX() + getLocation().getX(),
+                  containerOrigin.getY() + getLocation().getY(), size, size,
                 0, 360);
-        g.drawString("F:  " + fuel, getLocation().getX() - size / 2,
-                getLocation().getY() + size * 2);
-        g.drawString("W: " + water, getLocation().getX() - size / 2,
-                getLocation().getY() + size * 3);
+        g.drawString("F:  " + fuel,
+                    containerOrigin.getX() + getLocation().getX() - size / 2,
+                    containerOrigin.getY() + getLocation().getY() + size * 2);
+        g.drawString("W: " + water,
+                containerOrigin.getX() + getLocation().getX() - size / 2,
+                containerOrigin.getY() + getLocation().getY() + size * 3);
 
         // use polar to coordinate conversion for heading line position
         //
-        int heX = center.getX() + (int) (headingRadius * Math.cos(angle));
-        int heY = center.getY() - (int) (headingRadius * Math.sin(angle));
+        int heX = containerOrigin.getX() + center.getX()
+                    + (int) (headingRadius * Math.cos(angle));
+        int heY = containerOrigin.getY() +
+                    center.getY() - (int) (headingRadius * Math.sin(angle));
 
-        g.drawLine(center.getX(), center.getY(), heX, heY);
+        g.drawLine(containerOrigin.getX() + center.getX(),
+                    containerOrigin.getY() + center.getY(), heX, heY);
     }
 }
