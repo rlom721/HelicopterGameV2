@@ -48,6 +48,11 @@ public class Fire extends Fixed{
 
     public int size() { return size; }
 
+    public void setSize(int size) { this.size = size; }
+
+    public void start() {
+    }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));

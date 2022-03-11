@@ -44,11 +44,8 @@ public class Game extends Form implements Runnable {
         glassCockpit = new GlassCockpit(gw);
         controlCluster = new ControlCluster(gw);
 
-        mapView.getAllStyles().setBgColor(ColorUtil.BLACK);
-        mapView.getAllStyles().setBgTransparency(255);
         controlCluster.setSize(new Dimension(Game.DISP_W, Game.DISP_H/5));
 
-        this.getToolbar().hideToolbar();
         this.setLayout(new BorderLayout());
         this.add(BorderLayout.CENTER, mapView);
         this.add(BorderLayout.NORTH, glassCockpit);

@@ -41,10 +41,29 @@ public class GameWorld{
         go.add(addBuildingBelowLeftRiver());
         go.add(addBuildingBelowRightRiver());
 
+
+        /*
         go.add(addFireAboveLeftRiver());
         go.add(addFireAboveRightRiver());
         go.add(addFireBelowCenterRiver());
+        */
+
         go.add(helicopter);
+    }
+
+    void placeFiresInBuilding(){
+        Fire f1 = new Fire(0, new Point(0, 0));
+        Fire f2 = new Fire(0, new Point(0, 0));
+        Fire f3 = new Fire(0, new Point(0, 0));
+
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Building){
+                Building currentBuilding = (Building)go;
+                (currentBuilding).setFireInBuilding(f1);
+                (currentBuilding).setFireInBuilding(f2);
+                (currentBuilding).setFireInBuilding(f3);
+            }
+        }
     }
 
     public void tick(){
@@ -196,7 +215,7 @@ public class GameWorld{
     }
 
     private Building addBuildingAboveRiver(){
-        Point bLocation = new Point(Game.DISP_W/5, Game.DISP_H/20);
+        Point bLocation = new Point(Game.DISP_W/6, Game.DISP_H/20);
         Dimension bDimension = new Dimension((int)(Game.DISP_W/1.5),
                 Game.DISP_H/10);
         return new Building(bLocation, bDimension);
@@ -205,17 +224,17 @@ public class GameWorld{
     private Building addBuildingBelowLeftRiver(){
         int riverLowerBound = river.getLocation().getY() + river.height();
         Point bLocation = new Point(  Game.DISP_W/12,
-                riverLowerBound + Game.DISP_H/8);
+                riverLowerBound + Game.DISP_H/10);
         Dimension bDimension = new Dimension(Game.DISP_W/8,
-                                    (int)(Game.DISP_H/2.5));
+                                    (int)(Game.DISP_H/3));
         return new Building(bLocation, bDimension);
     }
 
     private Building addBuildingBelowRightRiver(){
         int riverLowerBound = river.getLocation().getY() + river.height();
         Point bLocation = new Point( (int)(Game.DISP_W/1.25),
-                riverLowerBound + Game.DISP_H/5);
-        Dimension bDimension = new Dimension(Game.DISP_W/8, Game.DISP_H/3);
+                riverLowerBound + Game.DISP_H/6);
+        Dimension bDimension = new Dimension(Game.DISP_W/10, Game.DISP_H/4);
         return new Building(bLocation, bDimension);
     }
 

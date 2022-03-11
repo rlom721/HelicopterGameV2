@@ -1,7 +1,11 @@
 package org.csc133.a2.views;
 
+import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.*;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Font;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import org.csc133.a2.GameWorld;
 import org.csc133.a2.commands.*;
@@ -15,27 +19,22 @@ public class ControlCluster extends Container {
         this.gw = gw;
         this.setLayout(new BorderLayout());
 
-        Button accelerate = new Button("Accelerate");
-        Button brake = new Button("Brake");
-        Button drink = new Button("Drink");
-        Button exit = new Button("Exit");
-        Button fight = new Button("Fight");
-        Button left = new Button("Left");
-        Button right = new Button("Right");
-
-        accelerate.setCommand(new AccelerateCommand(gw));
-        brake.setCommand(new BrakeCommand(gw));
-        drink.setCommand(new DrinkCommand(gw));
-        exit.setCommand(new ExitCommand(gw));
-        fight.setCommand(new FightCommand(gw));
-        left.setCommand(new TurnLeftCommand(gw));
-        right.setCommand(new TurnRightCommand(gw));
+        Button accelerate = buttonMaker(new AccelerateCommand(gw), "Accel");
+        Button brake = buttonMaker(new BrakeCommand(gw), "Brake");
+        Button drink = buttonMaker(new DrinkCommand(gw), "Drink");
+        Button exit = buttonMaker(new ExitCommand(gw), "Exit");
+        Button fight = buttonMaker(new FightCommand(gw), "Fight");
+        Button left = buttonMaker(new TurnLeftCommand(gw), "Left");
+        Button right = buttonMaker(new TurnRightCommand(gw), "Right");
 
         Container westCommands = new Container(new BorderLayout());
         westCommands.add(BorderLayout.WEST, left);
         westCommands.add(BorderLayout.CENTER, right);
         westCommands.add(BorderLayout.EAST, fight);
         this.add(BorderLayout.WEST, westCommands);
+
+        BorderLayout bl = new BorderLayout();
+        bl.setCenterBehavior(BorderLayout.CENTER_BEHAVIOR_SCALE);
 
         this.add(BorderLayout.CENTER, exit);
 
@@ -44,5 +43,15 @@ public class ControlCluster extends Container {
         eastCommands.add(BorderLayout.CENTER, brake);
         eastCommands.add(BorderLayout.EAST, accelerate);
         this.add(BorderLayout.EAST, eastCommands);
+    }
+
+    private Button buttonMaker(Command command, String text){
+        Button button = new Button(text);
+        button.setCommand(command);
+        button.getAllStyles().setFont(Font.createSystemFont(CN.FACE_SYSTEM,
+                CN.STYLE_BOLD, CN.SIZE_LARGE));
+        button.getAllStyles().setBgColor(ColorUtil.LTGRAY);
+        button.getAllStyles().setBgTransparency(255);
+        return button;
     }
 }

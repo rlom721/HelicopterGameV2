@@ -8,7 +8,7 @@ public class AccelerateCommand extends Command {
     private GameWorld gw;
 
     public AccelerateCommand(GameWorld gw) {
-        super("Accelerate");
+        super("Accel");
         this.gw = gw;
     }
 

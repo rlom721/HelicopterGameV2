@@ -9,20 +9,24 @@ import java.util.Random;
 
 public class Building extends Fixed {
     private int value;
-    private int damage;
+    private double damage;
+    final private int MAX_FIRE_SIZE = 100;
 
     public Building(Point location, Dimension dimension) {
         setColor(ColorUtil.rgb(255, 0, 0));
         setLocation(location);
         setDimension(dimension);
-        damage = 0;
+        damage = 0.0;
         value = getDimension().getWidth() * getDimension().getHeight();
     }
 
     public void setFireInBuilding(Fire fire){
         Random rand = new Random();
-//        fire.setLocation(new Point( getLocation().getX() + rand.nextInt(dim),
-//                                    getLocation().getY() ));
+        fire.setLocation(new Point( getLocation().getX()
+                                    + rand.nextInt(width()),
+                            getLocation().getY() + rand.nextInt(height())));
+        fire.setSize(rand.nextInt(MAX_FIRE_SIZE));
+//        fire.start();
     }
 
     public int width(){ return getDimension().getWidth(); }
@@ -38,7 +42,7 @@ public class Building extends Fixed {
         g.drawString("V:  " + value,
                     containerOrigin.getX() + getLocation().getX() + width(),
                     containerOrigin.getY() + getLocation().getY() + height());
-        g.drawString("D: " + damage,
+        g.drawString("D: " + damage + "%",
                 containerOrigin.getX() + getLocation().getX() + width(),
                 containerOrigin.getY() + getLocation().getY() + height() + 30);
     }
