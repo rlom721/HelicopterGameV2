@@ -35,7 +35,7 @@ public class GameWorld{
         helipad = new Helipad();
         helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
         go = new ArrayList<>();
-        fires = new Fires();
+//        fires = new Fires();
         go.add(river);
         go.add(helipad);
 
@@ -55,15 +55,17 @@ public class GameWorld{
 
     void placeFiresInBuilding(){
         Fire f1 = new Fire(0, new Point(0, 0));
-        Fire f2 = new Fire(0, new Point(0, 0));
-        Fire f3 = new Fire(0, new Point(0, 0));
+//        Fire f2 = new Fire(0, new Point(0, 0));
+//        Fire f3 = new Fire(0, new Point(0, 0));
 
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Building){
                 Building currentBuilding = (Building)go;
-                (currentBuilding).setFireInBuilding(f1);
-                (currentBuilding).setFireInBuilding(f2);
-                (currentBuilding).setFireInBuilding(f3);
+                Point p = new Point(0, 0);
+                for (int i = 0; i < 3; i++)
+                    (currentBuilding).setFireInBuilding(new Fire(0, p));
+//                (currentBuilding).setFireInBuilding(f2);
+//                (currentBuilding).setFireInBuilding(f3);
             }
         }
     }
