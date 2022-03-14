@@ -2,7 +2,7 @@ package org.csc133.a2.gameObjects;
 
 import com.codename1.charts.util.ColorUtil;
 
-public class UnStarted extends FireState{
+public class UnStarted extends FireState {
     private static UnStarted unStarted;
 
     UnStarted() { }
@@ -16,5 +16,6 @@ public class UnStarted extends FireState{
     @Override
     void start(Fire fire) {
         fire.setColor(ColorUtil.MAGENTA);
+        fire.setState(new Burning());
     }
 }

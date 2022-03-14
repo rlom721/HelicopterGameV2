@@ -16,5 +16,6 @@ public class Extinguished extends FireState {
     @Override
     void start(Fire fire) {
         fire.setColor(ColorUtil.BLACK);
+        fire.setState(new Extinguished());
     }
 }

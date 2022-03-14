@@ -18,8 +18,8 @@ public class GameWorld{
     private River river;
     private Helipad helipad;
     private Helicopter helicopter;
-    //private ArrayList<Fire> fires;
-    private Fires fires;
+//    private ArrayList<Fire> fires;
+//    private Fires fires;
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
 
@@ -43,31 +43,27 @@ public class GameWorld{
         go.add(addBuildingBelowLeftRiver());
         go.add(addBuildingBelowRightRiver());
 
-
-        /*
-        go.add(addFireAboveLeftRiver());
-        go.add(addFireAboveRightRiver());
-        go.add(addFireBelowCenterRiver());
-        */
+        placeFiresInBuilding();
 
         go.add(helicopter);
     }
 
     void placeFiresInBuilding(){
-        Fire f1 = new Fire(0, new Point(0, 0));
-//        Fire f2 = new Fire(0, new Point(0, 0));
-//        Fire f3 = new Fire(0, new Point(0, 0));
-
+        ArrayList<Fire> tempFires = new ArrayList<>();
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Building){
                 Building currentBuilding = (Building)go;
                 Point p = new Point(0, 0);
-                for (int i = 0; i < 3; i++)
-                    (currentBuilding).setFireInBuilding(new Fire(0, p));
-//                (currentBuilding).setFireInBuilding(f2);
-//                (currentBuilding).setFireInBuilding(f3);
+                for (int i = 0; i < 3; i++) {
+                    Fire fire = new Fire(0, new Point(0, 0));
+                    currentBuilding.setFireInBuilding(fire);
+                    tempFires.add(fire);
+                }
             }
         }
+
+        for (Fire fire : tempFires)
+            getGameObjectCollection().add(fire);
     }
 
     public void tick(){

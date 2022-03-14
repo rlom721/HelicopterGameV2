@@ -9,7 +9,7 @@ public abstract class GameObjectCollection<T> extends GameObject {
         gameObjects = new ArrayList<>();
     }
 
-    ArrayList<T> getGameObjects(){
+    public ArrayList<T> getGameObjects(){
         return gameObjects;
     }
 
