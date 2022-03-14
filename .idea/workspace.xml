@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="ControlCluster implemented with buttons shown on the screen.">
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Implemented setFiresInBuilding method">
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fires.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/GameObjectCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/AccelerateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/AccelerateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helipad.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helipad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/ControlCluster.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/ControlCluster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helipad.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helipad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/compliance-check.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/compliance-check.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -923,7 +915,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646634134479</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Implemented setFiresInBuilding method">
+      <created>1646982121582</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1646982121582</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -955,6 +954,7 @@
     <MESSAGE value="Implemented Building class and have them displayed at the right locations on screen." />
     <MESSAGE value="Displays GlassCockpit with empty values, along with ControlCluster." />
     <MESSAGE value="ControlCluster implemented with buttons shown on the screen." />
-    <option name="LAST_COMMIT_MESSAGE" value="ControlCluster implemented with buttons shown on the screen." />
+    <MESSAGE value="Implemented setFiresInBuilding method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented setFiresInBuilding method" />
   </component>
 </project>

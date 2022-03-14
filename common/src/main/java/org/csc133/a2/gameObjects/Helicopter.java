@@ -38,8 +38,8 @@ public class Helicopter extends Movable implements Steerable {
     }
 
     public void move() {
-        center = new Point(center.getX() + (int) (speed * Math.cos(angle)),
-                center.getY() - (int) (speed * Math.sin(angle)));
+        center = new Point( center.getX() + (int) (speed * Math.cos(angle)),
+                            center.getY() - (int) (speed * Math.sin(angle)));
         setLocation(new Point(center.getX() - size/2, center.getY() - size/2));
     }
 

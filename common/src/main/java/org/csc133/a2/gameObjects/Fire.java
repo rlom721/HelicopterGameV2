@@ -51,6 +51,7 @@ public class Fire extends Fixed{
     public void setSize(int size) { this.size = size; }
 
     public void start() {
+
     }
 
     @Override

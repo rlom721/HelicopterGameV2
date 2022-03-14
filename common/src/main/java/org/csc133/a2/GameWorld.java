@@ -18,7 +18,8 @@ public class GameWorld{
     private River river;
     private Helipad helipad;
     private Helicopter helicopter;
-    private ArrayList<Fire> fires;
+    //private ArrayList<Fire> fires;
+    private Fires fires;
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
 
@@ -34,6 +35,7 @@ public class GameWorld{
         helipad = new Helipad();
         helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
         go = new ArrayList<>();
+        fires = new Fires();
         go.add(river);
         go.add(helipad);
 
