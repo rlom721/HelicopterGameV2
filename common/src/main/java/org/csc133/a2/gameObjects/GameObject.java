@@ -22,9 +22,4 @@ public abstract class GameObject implements Drawable {
     public Dimension getDimension() { return this.dimension; }
 
     public int getColor() { return this.color; }
-
-    // change size for SOME classes
-    public void adjustSize(){
-
-    }
 }

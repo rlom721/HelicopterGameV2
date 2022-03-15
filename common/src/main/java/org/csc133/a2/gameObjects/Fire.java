@@ -11,7 +11,7 @@ import java.util.Random;
 import static com.codename1.ui.CN.*;
 
 public class Fire extends Fixed{
-    final private Point center;
+    private Point center;
     private int size;
     private FireState state;
 
@@ -20,10 +20,9 @@ public class Fire extends Fixed{
         state = new UnStarted();
         setDimension(new Dimension(size, size));
         setLocation(location);
-
         setColor(ColorUtil.BLACK);
         this.center = new Point(location.getX() + size / 2,
-                location.getY() + size / 2);
+                                location.getY() + size / 2);
     }
 
     void setState(FireState fireState){ state = fireState; }
@@ -54,9 +53,16 @@ public class Fire extends Fixed{
     public void start() { state.start(this); }
 
     @Override
+    public void setLocation(Point point) {
+        super.setLocation(point);
+        this.center = new Point(getLocation().getX() + size / 2,
+                                getLocation().getY() + size / 2);
+    }
+
+    @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
-        g.setColor(ColorUtil.MAGENTA);
+        g.setColor(getColor());
 
         if (size > 0) {
             g.fillArc(containerOrigin.getX() + getLocation().getX(),

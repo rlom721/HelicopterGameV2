@@ -1,5 +1,6 @@
 package org.csc133.a2;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Graphics;
@@ -49,6 +50,9 @@ public class GameWorld{
     }
 
     void placeFiresInBuilding(){
+        int magenta = ColorUtil.MAGENTA;
+        int black = ColorUtil.BLACK;
+
         ArrayList<Fire> tempFires = new ArrayList<>();
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Building){
@@ -62,8 +66,18 @@ public class GameWorld{
             }
         }
 
-        for (Fire fire : tempFires)
+        for (Fire fire : tempFires) {
             getGameObjectCollection().add(fire);
+        }
+    }
+
+    public int getTotalFireSize(){
+        int sizeFires = 0;
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Fire)
+                sizeFires++;
+        }
+        return sizeFires;
     }
 
     public void tick(){

@@ -15,20 +15,21 @@ public class Building extends Fixed {
     private Fires fires;
 
     public Building(Point location, Dimension dimension) {
+        Random rand = new Random();
         fires = new Fires();
         setColor(ColorUtil.rgb(255, 0, 0));
         setLocation(location);
         setDimension(dimension);
         damage = 0.0;
-        value = getDimension().getWidth() * getDimension().getHeight();
+        value = rand.nextInt(10) * 100;
     }
 
     public void setFireInBuilding(Fire fire){
         Random rand = new Random();
-        fire.setLocation(new Point( this.getLocation().getX(),
-//                                        + rand.nextInt(width()),
-                                    this.getLocation().getY()));
-//                                        + rand.nextInt(height())));
+        fire.setLocation(new Point( this.getLocation().getX()
+                                        + rand.nextInt(width()),
+                                    this.getLocation().getY() +
+                                        + rand.nextInt(height())));
         fire.setSize(rand.nextInt(MAX_FIRE_SIZE));
         fires.add(fire);
         fire.start();
