@@ -19,7 +19,6 @@ public class GameWorld{
     private River river;
     private Helipad helipad;
     private Helicopter helicopter;
-//    private ArrayList<Fire> fires;
 //    private Fires fires;
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
@@ -36,7 +35,6 @@ public class GameWorld{
         helipad = new Helipad();
         helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
         go = new ArrayList<>();
-//        fires = new Fires();
         go.add(river);
         go.add(helipad);
 
@@ -50,17 +48,12 @@ public class GameWorld{
     }
 
     void placeFiresInBuilding(){
-        int magenta = ColorUtil.MAGENTA;
-        int black = ColorUtil.BLACK;
-
         ArrayList<Fire> tempFires = new ArrayList<>();
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Building){
                 Building currentBuilding = (Building)go;
-                Point p = new Point(0, 0);
                 for (int i = 0; i < 3; i++) {
-                    Fire fire = new Fire(0, new Point(0, 0));
-                    currentBuilding.setFireInBuilding(fire);
+                    Fire fire = new Fire(currentBuilding);
                     tempFires.add(fire);
                 }
             }
@@ -85,29 +78,6 @@ public class GameWorld{
         helicopter.reduceFuel();
         randomlyGrowFires();
         endGame();
-    }
-
-    void processKeyPress(int keyCode){
-        switch(keyCode){
-            case -93:
-                turnLeft();
-                break;
-            case -94:
-                turnRight();
-                break;
-            case -91:
-                accelerate();
-                break;
-            case -92:
-                brake();
-                break;
-            case 'f':
-                fight();
-                break;
-            case 'd':
-                drink();
-                break;
-        }
     }
 
     public void setDimension(Dimension worldSize) {
@@ -155,11 +125,11 @@ public class GameWorld{
     }
 
     private void randomlyGrowFires() {
+        Random rand = new Random();
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
-                if (getRand(0, 7) == 0) {
+                if (rand.nextInt(10) == 0)
                     ((Fire)go).grow();
-                }
             }
         }
     }
@@ -250,38 +220,5 @@ public class GameWorld{
                 riverLowerBound + Game.DISP_H/6);
         Dimension bDimension = new Dimension(Game.DISP_W/10, Game.DISP_H/4);
         return new Building(bLocation, bDimension);
-    }
-
-    private Fire addFireAboveRightRiver(){
-        int fSize = getRand(10, 500);
-        Point fLocation = new Point(getRand(Game.DISP_W/2,
-                Game.DISP_W-fSize),
-                getRand(0, river.getLocation().getY()));
-        return new Fire(fSize, fLocation);
-    }
-
-    private Fire addFireBelowCenterRiver() {
-        int fSize = getRand(10, 500);
-        int riverLowerBound = river.getLocation().getY() + river.height();
-        int aboveHelipad = helipad.getLocation().getY() - fSize;
-        Point fLocation = new Point(getRand(Game.DISP_W/2 - fSize,
-                Game.DISP_W/2 + fSize),
-                getRand(riverLowerBound, aboveHelipad));
-        return new Fire(fSize, fLocation);
-    }
-
-    private Fire addFireAboveLeftRiver() {
-        int fSize = getRand(10, 500);
-        Point fLocation = new Point(getRand(Game.DISP_W/4,
-                Game.DISP_W/2-fSize),
-                getRand(0, river.getLocation().getY()));
-        return new Fire(fSize, fLocation);
-    }
-
-    // generates random number, lower is inclusive, upper is exclusive
-    //
-    int getRand(int lower, int upper){
-        Random rand = new Random();
-        return rand.nextInt(upper-lower) + lower;
     }
 }

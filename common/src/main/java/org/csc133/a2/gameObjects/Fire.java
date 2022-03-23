@@ -14,15 +14,15 @@ public class Fire extends Fixed{
     private Point center;
     private int size;
     private FireState state;
+    private Building building;
 
-    public Fire(int size, Point location) {
-        this.size = size;
+    public Fire(Building building) {
         state = new UnStarted();
+        this.building = building;
+        this.building.setFireInBuilding(this);
         setDimension(new Dimension(size, size));
-        setLocation(location);
-        setColor(ColorUtil.BLACK);
-        this.center = new Point(location.getX() + size / 2,
-                                location.getY() + size / 2);
+        this.center = new Point(getLocation().getX() + size / 2,
+                                getLocation().getY() + size / 2);
     }
 
     void setState(FireState fireState){ state = fireState; }
@@ -52,12 +52,10 @@ public class Fire extends Fixed{
 
     public void start() { state.start(this); }
 
-    @Override
-    public void setLocation(Point point) {
-        super.setLocation(point);
-        this.center = new Point(getLocation().getX() + size / 2,
-                                getLocation().getY() + size / 2);
-    }
+//    public void setCenter(Point location) {
+//        this.center = new Point(location.getX() + size / 2,
+//                                location.getY() + size / 2);
+//    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

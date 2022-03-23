@@ -4,8 +4,6 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Building extends Fixed {
@@ -15,22 +13,21 @@ public class Building extends Fixed {
     private Fires fires;
 
     public Building(Point location, Dimension dimension) {
-        Random rand = new Random();
         fires = new Fires();
         setColor(ColorUtil.rgb(255, 0, 0));
         setLocation(location);
         setDimension(dimension);
         damage = 0.0;
-        value = rand.nextInt(10) * 100;
+        value = (width() % 10) * 100;
     }
 
     public void setFireInBuilding(Fire fire){
         Random rand = new Random();
-        fire.setLocation(new Point( this.getLocation().getX()
-                                        + rand.nextInt(width()),
-                                    this.getLocation().getY() +
-                                        + rand.nextInt(height())));
         fire.setSize(rand.nextInt(MAX_FIRE_SIZE));
+        fire.setLocation(new Point( this.getLocation().getX()
+                                        + rand.nextInt(width())-fire.size()/2,
+                                    this.getLocation().getY()
+                                     + rand.nextInt(height())-fire.size()/2));
         fires.add(fire);
         fire.start();
     }
