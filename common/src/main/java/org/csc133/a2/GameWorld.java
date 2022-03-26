@@ -1,9 +1,7 @@
 package org.csc133.a2;
 
-import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
-import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.gameObjects.*;
@@ -37,13 +35,10 @@ public class GameWorld{
         go = new ArrayList<>();
         go.add(river);
         go.add(helipad);
-
         go.add(addBuildingAboveRiver());
         go.add(addBuildingBelowLeftRiver());
         go.add(addBuildingBelowRightRiver());
-
         placeFiresInBuilding();
-
         go.add(helicopter);
     }
 
@@ -52,9 +47,10 @@ public class GameWorld{
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Building){
                 Building currentBuilding = (Building)go;
-                for (int i = 0; i < 3; i++) {
+                while (currentBuilding.getFireAreaBudget() > 0) {
                     Fire fire = new Fire(currentBuilding);
                     tempFires.add(fire);
+                    // REFACTOR: access fires thru building class ? allowed ?
                 }
             }
         }
@@ -142,7 +138,7 @@ public class GameWorld{
             if (helicopter.isWithinRangeOfFire(fire))
                 helicopter.fight(fire);
 
-            if (fire.size() == 0)
+            if (fire.diameter() == 0)
                 deadFires.add(fire);
             }
         }

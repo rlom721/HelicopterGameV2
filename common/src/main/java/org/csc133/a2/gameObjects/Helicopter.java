@@ -81,19 +81,19 @@ public class Helicopter extends Movable implements Steerable {
 
     public boolean isWithinRangeOfFire(Fire fire) {
         int fX1 = fire.getLocation().getX() - 10;
-        int fX2 = fire.getLocation().getX() + fire.size() + 10;
+        int fX2 = fire.getLocation().getX() + fire.diameter() + 10;
         int fY1 = fire.getLocation().getY() - 10;
-        int fY2 = fire.getLocation().getY() + fire.size() + 10;
+        int fY2 = fire.getLocation().getY() + fire.diameter() + 10;
 
         // helicopter is within bounding box of fire
         //
         if (hasCollided(fX1, fX2, fY1, fY2)) {
             // small fire sizes only require heli to be within range of fire
             //
-            if (fire.size() < 100)
+            if (fire.diameter() < 100)
                 return true;
             else
-                return isWithinCircle(fire.getCenter(), fire.size());
+                return isWithinCircle(fire.getCenter(), fire.diameter());
         }
 
         return false;

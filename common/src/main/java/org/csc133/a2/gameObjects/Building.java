@@ -4,33 +4,49 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
+
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Building extends Fixed {
     private int value;
-    private double damage;
-    final private int MAX_FIRE_SIZE = 100;
+    final private int MAX_FIRE_DIAMETER = 26;
+    final private int MIN_FIRE_DIAMETER = MAX_FIRE_DIAMETER/2;
+    private int fireAreaBudget;
     private Fires fires;
+    final private int area;
 
     public Building(Point location, Dimension dimension) {
         fires = new Fires();
         setColor(ColorUtil.rgb(255, 0, 0));
         setLocation(location);
         setDimension(dimension);
-        damage = 0.0;
         value = (width() % 10) * 100;
+        area = dimension.getHeight()*dimension.getWidth();
+        fireAreaBudget = 1000;
     }
 
     public void setFireInBuilding(Fire fire){
         Random rand = new Random();
-        fire.setSize(rand.nextInt(MAX_FIRE_SIZE));
+        fire.setDiameter(rand.nextInt(MAX_FIRE_DIAMETER-MIN_FIRE_DIAMETER)
+                                        + MIN_FIRE_DIAMETER);
         fire.setLocation(new Point( this.getLocation().getX()
-                                        + rand.nextInt(width())-fire.size()/2,
+                                + rand.nextInt(width()) - fire.diameter()/2,
                                     this.getLocation().getY()
-                                     + rand.nextInt(height())-fire.size()/2));
+                                + rand.nextInt(height()) - fire.diameter()/2));
         fires.add(fire);
+        fireAreaBudget -= fire.getArea();
         fire.start();
     }
+
+    public double damage(){
+        double totalFireArea = 0.0;
+        for (Fire fire : fires.getGameObjects())
+            totalFireArea += fire.diameter();
+        return totalFireArea/area;
+    }
+
+    public int getFireAreaBudget() { return fireAreaBudget; }
 
     public int width(){ return getDimension().getWidth(); }
 
@@ -38,6 +54,7 @@ public class Building extends Fixed {
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
+        Double damage = Math.floor(damage() * 100) / 100;
         g.setColor(getColor());
         g.drawRect(containerOrigin.getX() + getLocation().getX(),
                    containerOrigin.getY() + getLocation().getY(),
