@@ -124,7 +124,7 @@ public class GameWorld{
         Random rand = new Random();
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
-                if (rand.nextInt(10) == 0)
+                if (rand.nextInt(15) == 0)
                     ((Fire)go).grow();
             }
         }

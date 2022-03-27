@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Refactor setFireInBuilding method to remove bug where fires shifted upon instantiation of a game.">
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fixed.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Fixed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld$Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld$Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fire.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fixed.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Fixed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helicopter.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/gameObjects/Helicopter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/compliance-check.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/compliance-check.jar" afterDir="false" />
     </list>
@@ -964,7 +956,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648015214486</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas).">
+      <created>1648277907210</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1648277907210</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1002,7 +1001,8 @@
     <MESSAGE value="Implementing fire placement into building" />
     <MESSAGE value="Fires show inside buildings. Bug where fires shift occurs upon starting game." />
     <MESSAGE value="Refactor setFireInBuilding method to remove bug where fires shifted upon instantiation of a game." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor setFireInBuilding method to remove bug where fires shifted upon instantiation of a game." />
+    <MESSAGE value="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1011,11 +1011,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="5" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -1027,6 +1022,8 @@
       <configuration name="MavenRunConfiguration">
         <watch expression="fireAreaBudget" language="JAVA" />
         <watch expression="fire.getArea()" language="JAVA" />
+        <watch expression="currentBuilding.fireAreaBudget" />
+        <watch expression="fire.diameter" />
       </configuration>
     </watches-manager>
   </component>
