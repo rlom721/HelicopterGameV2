@@ -5,7 +5,6 @@ import com.codename1.ui.Display;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.gameObjects.*;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -60,7 +59,6 @@ public class GameWorld{
                     Fire fire = new Fire(currentBuilding);
                     tempFires.add(fire);
                     numberOfFires += 1;
-                    // REFACTOR: access fires thru building class ? allowed ?
                 }
             }
         }

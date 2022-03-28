@@ -12,5 +12,5 @@ public abstract class Movable extends GameObject{
 
     void setHeading(int heading) { this.heading = heading; }
 
-    abstract void move();
+    public void move() {}
 }

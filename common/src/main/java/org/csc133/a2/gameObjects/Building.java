@@ -15,8 +15,6 @@ public class Building extends Fixed {
     private int fireAreaBudget;
     private Fires fires;
     final private int area;
-    private double totalFireArea = 0.0;
-
 
     public Building(Point location, Dimension dimension) {
         fires = new Fires();
@@ -43,8 +41,13 @@ public class Building extends Fixed {
 
     // damage is ratio of total fire area to building area
     public double damage(){
-        for (Fire fire : fires.getGameObjects())
-            totalFireArea += fire.getArea();
+        double totalFireArea = 0.0;
+        for (Fire fire : fires.getGameObjects()) {
+            if (fire.getState() instanceof Extinguished)
+                totalFireArea += fire.getMaxSize();
+            else
+                totalFireArea += fire.getArea();
+        }
         return totalFireArea/area;
     }
 

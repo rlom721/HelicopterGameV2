@@ -14,6 +14,7 @@ public class Fire extends Fixed{
     private int diameter;
     private FireState state;
     private Building building;
+    private int maxSize;
 
     public Fire(Building building) {
         state = new UnStarted();
@@ -22,6 +23,7 @@ public class Fire extends Fixed{
         setDimension(new Dimension(diameter, diameter));
         this.center = new Point(getLocation().getX() + diameter / 2,
                                 getLocation().getY() + diameter / 2);
+        maxSize = 0;
     }
 
     public void grow() {
@@ -33,6 +35,8 @@ public class Fire extends Fixed{
         diameter += increase;
         setLocation(new Point(  center.getX() - diameter/2,
                                 center.getY() - diameter/2));
+
+        if (getArea() > maxSize) maxSize = getArea();
     }
 
     void shrink(int reduce) {
@@ -57,7 +61,13 @@ public class Fire extends Fixed{
 
     public void start() { state.setNextState(this); }
 
-    public void extinguish() { state.setNextState(this); }
+    public void extinguish() {
+        state.setNextState(this);
+    }
+
+    public int getMaxSize() { return maxSize; }
+
+    public FireState getState() { return state; }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

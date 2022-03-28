@@ -8,7 +8,6 @@ public class Fires extends GameObjectCollection<Fire> {
 
     public Fires(){
         super();
-//        this.setColor(ColorUtil.MAGENTA);
     }
 
     @Override
