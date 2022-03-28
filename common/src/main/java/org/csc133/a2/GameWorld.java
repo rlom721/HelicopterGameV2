@@ -13,6 +13,7 @@ import java.util.Random;
 // Holds state of game, determines win/lose conditions and links Game objects.
 //
 public class GameWorld{
+    private static GameWorld gameWorld;
     private Dimension worldSize;
     private River river;
     private Helipad helipad;
@@ -24,9 +25,15 @@ public class GameWorld{
 
     private enum Result {LOST, WON};
 
-    public GameWorld(){
+    private GameWorld(){
         INITIAL_FUEL = 25000;
         init();
+    }
+
+    public static GameWorld getInstance(){
+        if (gameWorld == null)
+            gameWorld = new GameWorld();
+        return gameWorld;
     }
 
     public void init(){

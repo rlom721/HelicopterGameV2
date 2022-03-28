@@ -39,7 +39,7 @@ public class Game extends Form implements Runnable {
     }
 
     public Game() {
-        gw = new GameWorld();
+        gw = GameWorld.getInstance();
         mapView = new MapView(gw);
         glassCockpit = new GlassCockpit(gw);
         controlCluster = new ControlCluster(gw);
