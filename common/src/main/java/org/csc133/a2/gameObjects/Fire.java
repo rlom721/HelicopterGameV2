@@ -24,8 +24,6 @@ public class Fire extends Fixed{
                                 getLocation().getY() + diameter / 2);
     }
 
-    void setState(FireState fireState){ state = fireState; }
-
     public void grow() {
         Random rand = new Random();
         int increase = rand.nextInt(2);
@@ -55,7 +53,17 @@ public class Fire extends Fixed{
 
     public void setDiameter(int diameter) { this.diameter = diameter; }
 
-    public void start() { state.start(this); }
+    void setFireState(FireState fireState){ state = fireState; }
+
+    public void start() { state.setNextState(this);
+        // TEST
+        if (state instanceof UnStarted) System.out.println("Burning");
+    }
+
+    public void extinguish() { state.setNextState(this);
+        // TEST
+        if (state instanceof UnStarted) System.out.println("Extinguished");
+    }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

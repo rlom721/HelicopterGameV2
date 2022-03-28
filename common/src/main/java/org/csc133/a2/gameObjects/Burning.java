@@ -14,8 +14,8 @@ public class Burning extends FireState {
     }
 
     @Override
-    void start(Fire fire) {
-        fire.setColor(ColorUtil.MAGENTA);
-        fire.setState(new Burning());
+    void setNextState(Fire fire) {
+        fire.setColor(ColorUtil.BLACK);
+        fire.setFireState(Extinguished.getState());
     }
 }

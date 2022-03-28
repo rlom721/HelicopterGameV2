@@ -141,6 +141,7 @@ public class GameWorld{
                 if (helicopter.isWithinRangeOfFire(fire))
                     helicopter.fight(fire);
                 if (fire.diameter() == 0) {
+                    fire.extinguish();
                     deadFires.add(fire);
                     numberOfFires -= 1;
                 }

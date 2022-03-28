@@ -14,8 +14,8 @@ public class UnStarted extends FireState {
     }
 
     @Override
-    void start(Fire fire) {
+    void setNextState(Fire fire) {
         fire.setColor(ColorUtil.MAGENTA);
-        fire.setState(new Burning());
+        fire.setFireState(Burning.getState());
     }
 }
