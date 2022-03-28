@@ -11,10 +11,12 @@ import java.util.Random;
 public class Building extends Fixed {
     private int value;
     final private int MAX_FIRE_DIAMETER = 26;
-    final private int MIN_FIRE_DIAMETER = MAX_FIRE_DIAMETER-10;
+    final private int MIN_FIRE_DIAMETER = MAX_FIRE_DIAMETER-5;
     private int fireAreaBudget;
     private Fires fires;
     final private int area;
+    private double totalFireArea = 0.0;
+
 
     public Building(Point location, Dimension dimension) {
         fires = new Fires();
@@ -41,7 +43,6 @@ public class Building extends Fixed {
 
     // damage is ratio of total fire area to building area
     public double damage(){
-        double totalFireArea = 0.0;
         for (Fire fire : fires.getGameObjects())
             totalFireArea += fire.getArea();
         return totalFireArea/area;

@@ -55,15 +55,9 @@ public class Fire extends Fixed{
 
     void setFireState(FireState fireState){ state = fireState; }
 
-    public void start() { state.setNextState(this);
-        // TEST
-        if (state instanceof UnStarted) System.out.println("Burning");
-    }
+    public void start() { state.setNextState(this); }
 
-    public void extinguish() { state.setNextState(this);
-        // TEST
-        if (state instanceof UnStarted) System.out.println("Extinguished");
-    }
+    public void extinguish() { state.setNextState(this); }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {

@@ -14,8 +14,6 @@ public class Helicopter extends Movable implements Steerable {
     private Point center;
     final private int size;
     private int fuel, water;
-    private int speed;
-    private int heading;
     private final int headingRadius;
     final private int MAX_SPEED = 10;
     final private int MAX_WATER = 1000;
@@ -24,9 +22,9 @@ public class Helicopter extends Movable implements Steerable {
     public Helicopter(Point helipadCenter, int initFuel) {
         fuel = initFuel;
         water = 0;
-        speed = 0;
-        heading = 0;
-        angle = Math.toRadians(heading);
+        setSpeed(0);
+        setHeading(0);
+        angle = Math.toRadians(heading());
         size = Game.DISP_H / 40;
         headingRadius = size * 2;
 
@@ -37,22 +35,23 @@ public class Helicopter extends Movable implements Steerable {
         setDimension(new Dimension(size, size));
     }
 
+    @Override
     public void move() {
-        center = new Point( center.getX() + (int) (speed * Math.cos(angle)),
-                            center.getY() - (int) (speed * Math.sin(angle)));
+        center = new Point( center.getX() + (int) (speed() * Math.cos(angle)),
+                            center.getY() - (int) (speed() * Math.sin(angle)));
         setLocation(new Point(center.getX() - size/2, center.getY() - size/2));
     }
 
     public void increaseSpeed() {
-        if (speed != MAX_SPEED) speed++;
+        if (speed() != MAX_SPEED) setSpeed(speed()+1);
     }
 
     public void decreaseSpeed() {
-        if (speed != 0) speed--;
+        if (speed() != 0) setSpeed(speed()-1);
     }
 
     public void drink() {
-        if (speed < 3 && water < MAX_WATER)
+        if (speed() < 3 && water < MAX_WATER)
             water += 100;
     }
 
@@ -66,7 +65,7 @@ public class Helicopter extends Movable implements Steerable {
 
     public void reduceFuel() {
         // fuel -= speed * speed + 5;
-        fuel -= Math.sqrt(speed) + 5;
+        fuel -= Math.sqrt(speed()) + 5;
         if (fuel < 0) fuel = 0;
     }
 
@@ -105,24 +104,24 @@ public class Helicopter extends Movable implements Steerable {
 
     @Override
     public void steerLeft() {
-        if (heading < 0 || heading > 360)
-            heading = 0;
-        heading += 15;
+        if (heading() < 0 || heading() > 360)
+            setHeading(0);
+        setHeading(heading()+15);
     }
 
     @Override
     public void steerRight() {
-        if (heading < 0 || heading > 360)
-            heading = 360;
-        heading -= 15;
+        if (heading() < 0 || heading() > 360)
+            setHeading(360);
+        setHeading(heading()-15);
     }
 
     public int getHeading() {
-        return heading;
+        return heading();
     }
 
     public int getSpeed() {
-        return speed;
+        return speed();
     }
 
     public int fuel() {
@@ -155,7 +154,7 @@ public class Helicopter extends Movable implements Steerable {
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        angle = Math.toRadians(heading) + Math.PI / 2;
+        angle = Math.toRadians(heading()) + Math.PI / 2;
 
         g.setColor(getColor());
         g.setFont(Font.createSystemFont(FACE_SYSTEM, STYLE_BOLD, SIZE_MEDIUM));
