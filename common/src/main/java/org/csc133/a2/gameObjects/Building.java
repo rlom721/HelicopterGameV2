@@ -55,7 +55,7 @@ public class Building extends Fixed {
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        Double damage = Math.floor(damage() * 100);
+        int damagePercent = (int)(damage()*100);
         g.setColor(getColor());
         g.drawRect(containerOrigin.getX() + getLocation().getX(),
                    containerOrigin.getY() + getLocation().getY(),
@@ -63,7 +63,7 @@ public class Building extends Fixed {
         g.drawString("V:  " + value,
                     containerOrigin.getX() + getLocation().getX() + width(),
                     containerOrigin.getY() + getLocation().getY() + height());
-        g.drawString("D: " + damage + "%",
+        g.drawString("D: " + damagePercent + "%",
                 containerOrigin.getX() + getLocation().getX() + width(),
                 containerOrigin.getY() + getLocation().getY() + height() + 30);
     }

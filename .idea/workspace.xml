@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas).">
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Building damage implemented and displays properly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Helicopter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameObjects/Movable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/GlassCockpit.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/GlassCockpit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/HornetsHfd-A2-common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld$Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld$Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/org/csc133/a2/GameWorld.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/codenameone/simulator.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/target/compliance-check.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/compliance-check.jar" afterDir="false" />
     </list>
@@ -963,7 +968,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648277907210</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Building damage implemented and displays properly">
+      <created>1648418143173</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1648418143173</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1002,7 +1014,8 @@
     <MESSAGE value="Fires show inside buildings. Bug where fires shift occurs upon starting game." />
     <MESSAGE value="Refactor setFireInBuilding method to remove bug where fires shifted upon instantiation of a game." />
     <MESSAGE value="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented fireAreaBudget to limit number of fires within building (also limited individual fire areas)." />
+    <MESSAGE value="Building damage implemented and displays properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Building damage implemented and displays properly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

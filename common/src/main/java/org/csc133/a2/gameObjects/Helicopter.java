@@ -103,30 +103,6 @@ public class Helicopter extends Movable implements Steerable {
         return isWithinCircle(helipad.getCenter(), helipad.circleDiameter());
     }
 
-    // checks for collision with other object (passes in bounding box values)
-    // x1: left bound, x2: right bound, y1: upper bound, y2 lower bound
-    //
-    private boolean hasCollided(int x1, int x2, int y1, int y2) {
-        int hX1 = getLocation().getX();
-        int hX2 = getLocation().getX() + size;
-        int hY1 = getLocation().getY();
-        int hY2 = getLocation().getY() + size;
-
-        // check bounding box conditions (these are true if NO collision)
-        //
-        return !(hX1 > x2) && !(hX2 < x1) && !(hY1 > y2) && !(hY2 < y1);
-    }
-
-    private boolean isWithinCircle(Point cCenter, int diameter) {
-        int x = center.getX() - cCenter.getX();
-        int y = center.getY() - cCenter.getY();
-
-        // applies distance formula to see if helicopter is near a fire:
-        // d = sqrt(a^2 + b^2)
-        //
-        return Math.sqrt(x * x + y * y) <= (double) (diameter / 2);
-    }
-
     @Override
     public void steerLeft() {
         if (heading < 0 || heading > 360)
@@ -151,6 +127,30 @@ public class Helicopter extends Movable implements Steerable {
 
     public int fuel() {
         return fuel;
+    }
+
+    // checks for collision with other object (passes in bounding box values)
+    // x1: left bound, x2: right bound, y1: upper bound, y2 lower bound
+    //
+    private boolean hasCollided(int x1, int x2, int y1, int y2) {
+        int hX1 = getLocation().getX();
+        int hX2 = getLocation().getX() + size;
+        int hY1 = getLocation().getY();
+        int hY2 = getLocation().getY() + size;
+
+        // check bounding box conditions (these are true if NO collision)
+        //
+        return !(hX1 > x2) && !(hX2 < x1) && !(hY1 > y2) && !(hY2 < y1);
+    }
+
+    private boolean isWithinCircle(Point cCenter, int diameter) {
+        int x = center.getX() - cCenter.getX();
+        int y = center.getY() - cCenter.getY();
+
+        // applies distance formula to see if helicopter is near a fire:
+        // d = sqrt(a^2 + b^2)
+        //
+        return Math.sqrt(x * x + y * y) <= (double) (diameter / 2);
     }
 
     @Override

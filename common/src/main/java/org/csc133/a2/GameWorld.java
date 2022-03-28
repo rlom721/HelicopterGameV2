@@ -20,6 +20,7 @@ public class GameWorld{
 //    private Fires fires;
     final int INITIAL_FUEL;
     private ArrayList<GameObject> go;
+    private int numberOfFires;
 
     private enum Result {LOST, WON};
 
@@ -29,6 +30,7 @@ public class GameWorld{
     }
 
     public void init(){
+        numberOfFires = 0;
         river = new River();
         helipad = new Helipad();
         helicopter = new Helicopter(helipad.getCenter(), INITIAL_FUEL);
@@ -50,6 +52,7 @@ public class GameWorld{
                 while (currentBuilding.getFireAreaBudget() > 0) {
                     Fire fire = new Fire(currentBuilding);
                     tempFires.add(fire);
+                    numberOfFires += 1;
                     // REFACTOR: access fires thru building class ? allowed ?
                 }
             }
@@ -60,11 +63,11 @@ public class GameWorld{
         }
     }
 
-    public int getTotalFireSize(){
+    private int totalFireSize(){
         int sizeFires = 0;
         for (GameObject go : getGameObjectCollection()){
             if (go instanceof Fire)
-                sizeFires++;
+                sizeFires += ((Fire)go).diameter();
         }
         return sizeFires;
     }
@@ -134,12 +137,13 @@ public class GameWorld{
         ArrayList<Fire> deadFires = new ArrayList<>();
         for(GameObject go : getGameObjectCollection()) {
             if (go instanceof Fire) {
-                Fire fire = (Fire)go;
-            if (helicopter.isWithinRangeOfFire(fire))
-                helicopter.fight(fire);
-
-            if (fire.diameter() == 0)
-                deadFires.add(fire);
+                Fire fire = (Fire) go;
+                if (helicopter.isWithinRangeOfFire(fire))
+                    helicopter.fight(fire);
+                if (fire.diameter() == 0) {
+                    deadFires.add(fire);
+                    numberOfFires -= 1;
+                }
             }
         }
         helicopter.dumpWater();
@@ -192,6 +196,12 @@ public class GameWorld{
 
     public String getFuel() {
         return Integer.toString(helicopter.fuel());
+    }
+
+    public String getNumberOfFires() { return Integer.toString(numberOfFires); }
+
+    public String getTotalFireSize() {
+        return Integer.toString(totalFireSize());
     }
 
     private Building addBuildingAboveRiver(){

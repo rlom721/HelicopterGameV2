@@ -4,10 +4,9 @@ import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 
 public abstract class Movable extends GameObject{
-//    private int speed;
-//    private int heading;
-//    final private int MAX_HEADING = 360;
-//
+    private int speed;
+    private int heading;
+
 //    public Movable(int speed, int heading) {
 //        this.speed = speed;
 //        this.heading = heading;
