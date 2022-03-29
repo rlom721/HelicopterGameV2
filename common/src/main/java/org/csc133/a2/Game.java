@@ -62,7 +62,7 @@ public class Game extends Form implements Runnable {
         addKeyListener('Q', new ExitCommand(gw));
 
         UITimer timer = new UITimer(this);
-        timer.schedule(20, true, this);
+        timer.schedule(50, true, this);
     }
 
     @Override

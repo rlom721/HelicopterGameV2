@@ -39,8 +39,7 @@ public class Building extends Fixed {
         fire.start();
     }
 
-    // damage is ratio of total fire area to building area
-    public double damage(){
+    public double getTotalFireArea(){
         double totalFireArea = 0.0;
         for (Fire fire : fires.getGameObjects()) {
             if (fire.getState() instanceof Extinguished)
@@ -48,7 +47,7 @@ public class Building extends Fixed {
             else
                 totalFireArea += fire.getArea();
         }
-        return totalFireArea/area;
+        return totalFireArea;
     }
 
     public int getFireAreaBudget() { return fireAreaBudget; }
@@ -57,9 +56,13 @@ public class Building extends Fixed {
 
     public int height(){ return getDimension().getHeight(); }
 
+    public int getArea() { return area; }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        int damagePercent = (int)(damage()*100);
+        // damage is ratio of total fire area to building area
+        //
+        int damagePercent = (int)((getTotalFireArea()/area)*100);
         g.setColor(getColor());
         g.drawRect(containerOrigin.getX() + getLocation().getX(),
                    containerOrigin.getY() + getLocation().getY(),

@@ -210,6 +210,22 @@ public class GameWorld{
         return Integer.toString(totalFireSize());
     }
 
+    public String getTotalDamage() {
+        return percentDamageOfBuildings() + "%";
+    }
+
+    private int percentDamageOfBuildings() {
+        double totalDamage = 0.0;
+        double totalBuildingArea = 0.0;
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Building) {
+                totalDamage += ((Building)go).getTotalFireArea();
+                totalBuildingArea += ((Building)go).getArea();
+            }
+        }
+        return (int)((totalDamage/totalBuildingArea)*100);
+    }
+
     private Building addBuildingAboveRiver(){
         Point bLocation = new Point(Game.DISP_W/6, Game.DISP_H/20);
         Dimension bDimension = new Dimension((int)(Game.DISP_W/1.5),
