@@ -20,13 +20,14 @@ public class Helicopter extends Movable implements Steerable {
     private double angle;
     final private int INIT_FUEL = 25000;
 
-    public Helicopter(Point helipadCenter) {
+    public Helicopter(Point helipadCenter, Dimension worldSize) {
+        setWorldSize(worldSize);
         fuel = INIT_FUEL;
         water = 0;
         setSpeed(0);
         setHeading(0);
         angle = Math.toRadians(heading());
-        size = Game.DISP_H / 40;
+        size = worldSize.getHeight() / 40;
         headingRadius = size * 2;
 
         center = new Point(helipadCenter.getX(), helipadCenter.getY() + size);
@@ -167,10 +168,10 @@ public class Helicopter extends Movable implements Steerable {
                 0, 360);
         g.drawString("F:  " + fuel,
                     containerOrigin.getX() + getLocation().getX() - size / 2,
-                    containerOrigin.getY() + getLocation().getY() + size * 2);
+                    containerOrigin.getY() + getLocation().getY() + size * 3);
         g.drawString("W: " + water,
                 containerOrigin.getX() + getLocation().getX() - size / 2,
-                containerOrigin.getY() + getLocation().getY() + size * 3);
+                containerOrigin.getY() + getLocation().getY() + size * 4);
 
         // use polar to coordinate conversion for heading line position
         //

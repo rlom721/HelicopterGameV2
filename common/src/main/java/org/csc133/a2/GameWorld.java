@@ -33,8 +33,8 @@ public class GameWorld{
     public void init(){
         numberOfFires = 0;
         river = new River(worldSize);
-        helipad = new Helipad();
-        helicopter = new Helicopter(helipad.getCenter());
+        helipad = new Helipad(worldSize);
+        helicopter = new Helicopter(helipad.getCenter(), worldSize);
         go = new ArrayList<>();
         go.add(river);
         go.add(helipad);
@@ -52,7 +52,7 @@ public class GameWorld{
             if (go instanceof Building){
                 Building currentBuilding = (Building)go;
                 while (currentBuilding.getFireAreaBudget() > 0) {
-                    Fire fire = new Fire(currentBuilding);
+                    Fire fire = new Fire(currentBuilding, worldSize);
                     tempFires.add(fire);
                     numberOfFires += 1;
                 }

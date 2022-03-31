@@ -16,7 +16,8 @@ public class Fire extends Fixed{
     private Building building;
     private int maxSize;
 
-    public Fire(Building building) {
+    public Fire(Building building, Dimension worldSize) {
+        setWorldSize(worldSize);
         state = new UnStarted();
         this.building = building;
         this.building.setFireInBuilding(this);
