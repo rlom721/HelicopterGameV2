@@ -22,10 +22,8 @@ public class Helipad extends Fixed{
         cOffset = 40;
         cSize = sSize - cOffset;
 
-        // located at half the screen width and its width above the bottom
-        //
         setLocation(new Point(  worldSize.getWidth()/2 - sSize/2,
-                                worldSize.getHeight() - (int)(sSize*2)));
+                                worldSize.getHeight() - sSize*2));
         center = new Point( getLocation().getX() + sSize / 2,
                             getLocation().getY() + sSize / 2);
     }

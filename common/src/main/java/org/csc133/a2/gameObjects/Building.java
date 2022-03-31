@@ -59,11 +59,16 @@ public class Building extends Fixed {
 
     public int getArea() { return area; }
 
+    // damage is ratio of total fire area to building area
+    //
+    public int damage() { return (int)((getTotalFireArea()/area)*100); }
+
+    public double financialLoss() {
+        return damage()/100.0 * value;
+    }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        // damage is ratio of total fire area to building area
-        //
-        int damagePercent = (int)((getTotalFireArea()/area)*100);
         g.setColor(getColor());
         g.drawRect(containerOrigin.getX() + getLocation().getX(),
                    containerOrigin.getY() + getLocation().getY(),
@@ -71,7 +76,7 @@ public class Building extends Fixed {
         g.drawString("V:  " + value,
                     containerOrigin.getX() + getLocation().getX() + width(),
                     containerOrigin.getY() + getLocation().getY() + height());
-        g.drawString("D: " + damagePercent + "%",
+        g.drawString("D: " + damage() + "%",
                 containerOrigin.getX() + getLocation().getX() + width(),
                 containerOrigin.getY() + getLocation().getY() + height() + 30);
     }

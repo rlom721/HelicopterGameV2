@@ -206,8 +206,23 @@ public class GameWorld{
         return Integer.toString(totalFireSize());
     }
 
+    public String getFinancialLoss() {
+        return Integer.toString(totalFinancialLoss());
+    }
+
     public String getTotalDamage() {
         return percentDamageOfBuildings() + "%";
+    }
+
+    private int totalFinancialLoss() {
+        double financialLoss = 0.0;
+        for (GameObject go : getGameObjectCollection()) {
+            if (go instanceof Building) {
+                Building currentBuilding = (Building)go;
+                financialLoss += currentBuilding.financialLoss();
+            }
+        }
+        return (int)financialLoss;
     }
 
     private int percentDamageOfBuildings() {
@@ -223,26 +238,28 @@ public class GameWorld{
     }
 
     private Building addBuildingAboveRiver(){
-        Point bLocation = new Point(Game.DISP_W/6, Game.DISP_H/20);
-        Dimension bDimension = new Dimension((int)(Game.DISP_W/1.5),
-                Game.DISP_H/10);
+        Point bLocation = new Point(worldSize.getWidth()/6,
+                                    worldSize.getHeight()/20);
+        Dimension bDimension = new Dimension((int)(worldSize.getWidth()/1.5),
+                                        worldSize.getHeight()/10);
         return new Building(bLocation, bDimension, worldSize);
     }
 
     private Building addBuildingBelowLeftRiver(){
         int riverLowerBound = river.getLocation().getY() + river.height();
-        Point bLocation = new Point(  Game.DISP_W/12,
-                riverLowerBound + Game.DISP_H/10);
-        Dimension bDimension = new Dimension(Game.DISP_W/8,
-                                    (int)(Game.DISP_H/3));
+        Point bLocation = new Point(  worldSize.getWidth()/12,
+                riverLowerBound + worldSize.getHeight()/10);
+        Dimension bDimension = new Dimension(worldSize.getWidth()/9,
+                                            (int)(worldSize.getHeight()/3));
         return new Building(bLocation, bDimension, worldSize);
     }
 
     private Building addBuildingBelowRightRiver(){
         int riverLowerBound = river.getLocation().getY() + river.height();
-        Point bLocation = new Point( (int)(Game.DISP_W/1.25),
-                riverLowerBound + Game.DISP_H/6);
-        Dimension bDimension = new Dimension(Game.DISP_W/10, Game.DISP_H/4);
+        Point bLocation = new Point( (int)(worldSize.getWidth()/1.25),
+                riverLowerBound + worldSize.getHeight()/8);
+        Dimension bDimension = new Dimension(worldSize.getWidth()/10,
+                                            worldSize.getHeight()/3);
         return new Building(bLocation, bDimension, worldSize);
     }
 }
