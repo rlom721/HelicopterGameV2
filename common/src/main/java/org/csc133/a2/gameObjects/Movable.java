@@ -4,13 +4,13 @@ public abstract class Movable extends GameObject{
     private int speed;
     private int heading;
 
-    int speed() { return speed; }
+    public int speed() { return speed; }
 
-    int heading() { return heading; }
+    public int heading() { return heading; }
 
-    void setSpeed(int speed) { this.speed = speed; }
+    public void setSpeed(int speed) { this.speed = speed; }
 
-    void setHeading(int heading) { this.heading = heading; }
+    public void setHeading(int heading) { this.heading = heading; }
 
-    public void move() {}
+    public abstract void move();
 }

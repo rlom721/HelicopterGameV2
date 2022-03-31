@@ -67,6 +67,8 @@ public class Building extends Fixed {
         return damage()/100.0 * value;
     }
 
+    public boolean isDestroyed() { return damage() >= 100; }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(getColor());

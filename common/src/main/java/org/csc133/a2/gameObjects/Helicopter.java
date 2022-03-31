@@ -118,14 +118,6 @@ public class Helicopter extends Movable implements Steerable {
         setHeading(heading()-15);
     }
 
-    public int getHeading() {
-        return heading();
-    }
-
-    public int getSpeed() {
-        return speed();
-    }
-
     public int fuel() {
         return fuel;
     }

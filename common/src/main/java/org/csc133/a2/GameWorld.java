@@ -20,7 +20,7 @@ public class GameWorld{
     private ArrayList<GameObject> go;
     private int numberOfFires;
 
-    private enum Result {LOST, WON};
+    private enum Result {LOST, WON, LOST_FUEL, LOST_BUILDINGS}
 
     private GameWorld() { }
 
@@ -46,42 +46,11 @@ public class GameWorld{
         System.err.println("running init()...");
     }
 
-    void placeFiresInBuilding(){
-        ArrayList<Fire> tempFires = new ArrayList<>();
-        for (GameObject go : getGameObjectCollection()){
-            if (go instanceof Building){
-                Building currentBuilding = (Building)go;
-                while (currentBuilding.getFireAreaBudget() > 0) {
-                    Fire fire = new Fire(currentBuilding, worldSize);
-                    tempFires.add(fire);
-                    numberOfFires += 1;
-                }
-            }
-        }
-
-        for (Fire fire : tempFires) {
-            getGameObjectCollection().add(fire);
-        }
-    }
-
-    private int totalFireSize(){
-        int sizeFires = 0;
-        for (GameObject go : getGameObjectCollection()){
-            if (go instanceof Fire)
-                sizeFires += ((Fire)go).diameter();
-        }
-        return sizeFires;
-    }
-
     public void tick(){
         helicopter.move();
         helicopter.reduceFuel();
         randomlyGrowFires();
         endGame();
-    }
-
-    public void setDimension(Dimension worldSize) {
-        this.worldSize = worldSize;
     }
 
     public void accelerate() {
@@ -120,36 +89,9 @@ public class GameWorld{
     private void endGame() {
         if(helicopter.fuel() <= 0)
             gameOver(Result.LOST);
-        else if(helicopter.hasLandedOnHelipad(helipad) && allFiresAreOut())
+        else if( helicopter.hasLandedOnHelipad(helipad) && allFiresAreOut()
+                 && helicopter.speed() == 0)
             gameOver(Result.WON);
-    }
-
-    private void randomlyGrowFires() {
-        Random rand = new Random();
-        for(GameObject go : getGameObjectCollection()) {
-            if (go instanceof Fire) {
-                if (rand.nextInt(15) == 0)
-                    ((Fire)go).grow();
-            }
-        }
-    }
-
-    private void fightFiresIfHeliIsNear() {
-        ArrayList<Fire> deadFires = new ArrayList<>();
-        for(GameObject go : getGameObjectCollection()) {
-            if (go instanceof Fire) {
-                Fire fire = (Fire) go;
-                if (helicopter.isWithinRangeOfFire(fire))
-                    helicopter.fight(fire);
-                if (fire.diameter() == 0) {
-                    fire.extinguish();
-                    deadFires.add(fire);
-                    numberOfFires -= 1;
-                }
-            }
-        }
-        helicopter.dumpWater();
-        go.removeAll(deadFires);
     }
 
     void gameOver(Result result){
@@ -165,11 +107,14 @@ public class GameWorld{
     private String replayPrompt(Result result) {
         String dialogMsg = "";
 
-        if(result == Result.LOST){
+        if(result == Result.LOST && helicopter.fuel() < 0){
             dialogMsg = "You ran out of fuel :(\nPlay Again?";
         }
+        else if (result == Result.LOST && allBuildingsDestroyed()){
+            dialogMsg = "All buildings were destroyed :(\nPlay Again?";
+        }
         else if(result == Result.WON){
-            dialogMsg = "You won!" + "\nScore: " + helicopter.fuel()
+            dialogMsg = "You won!" + "\nScore: " + score()
                     + "\nPlay Again?";
         }
 
@@ -180,20 +125,16 @@ public class GameWorld{
         Display.getInstance().exitApplication();
     }
 
-    boolean allFiresAreOut(){
-        for (GameObject go : getGameObjectCollection()){
-            if (go instanceof Fire)
-                return false;
-        }
-        return true;
+    public void setDimension(Dimension worldSize) {
+        this.worldSize = worldSize;
     }
 
     public String getHeading() {
-        return Integer.toString(helicopter.getHeading());
+        return Integer.toString(helicopter.heading());
     }
 
     public String getSpeed() {
-        return Integer.toString(helicopter.getSpeed());
+        return Integer.toString(helicopter.speed());
     }
 
     public String getFuel() {
@@ -212,6 +153,45 @@ public class GameWorld{
 
     public String getTotalDamage() {
         return percentDamageOfBuildings() + "%";
+    }
+
+    private int score() { return 100 - percentDamageOfBuildings(); }
+
+    private void randomlyGrowFires() {
+        Random rand = new Random();
+        for(GameObject go : getGameObjectCollection()) {
+            if (go instanceof Fire) {
+                if (rand.nextInt(20) == 0)
+                    ((Fire)go).grow();
+            }
+        }
+    }
+
+    private void placeFiresInBuilding(){
+        ArrayList<Fire> tempFires = new ArrayList<>();
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Building){
+                Building currentBuilding = (Building)go;
+                while (currentBuilding.getFireAreaBudget() > 0) {
+                    Fire fire = new Fire(currentBuilding, worldSize);
+                    tempFires.add(fire);
+                    numberOfFires += 1;
+                }
+            }
+        }
+
+        for (Fire fire : tempFires) {
+            getGameObjectCollection().add(fire);
+        }
+    }
+
+    private int totalFireSize(){
+        int sizeFires = 0;
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Fire)
+                sizeFires += ((Fire)go).diameter();
+        }
+        return sizeFires;
     }
 
     private int totalFinancialLoss() {
@@ -237,6 +217,42 @@ public class GameWorld{
         return (int)((totalDamage/totalBuildingArea)*100);
     }
 
+    private void fightFiresIfHeliIsNear() {
+        ArrayList<Fire> deadFires = new ArrayList<>();
+        for(GameObject go : getGameObjectCollection()) {
+            if (go instanceof Fire) {
+                Fire fire = (Fire) go;
+                if (helicopter.isWithinRangeOfFire(fire))
+                    helicopter.fight(fire);
+                if (fire.diameter() == 0) {
+                    fire.extinguish();
+                    deadFires.add(fire);
+                    numberOfFires -= 1;
+                }
+            }
+        }
+        helicopter.dumpWater();
+        go.removeAll(deadFires);
+    }
+
+    private boolean allFiresAreOut(){
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Fire)
+                return false;
+        }
+        return true;
+    }
+
+    private boolean allBuildingsDestroyed() {
+        for (GameObject go : getGameObjectCollection()){
+            if (go instanceof Building) {
+                Building currentBuilding = (Building) go;
+                if (!currentBuilding.isDestroyed()) return false;
+            }
+        }
+        return true;
+    }
+
     private Building addBuildingAboveRiver(){
         Point bLocation = new Point(worldSize.getWidth()/6,
                                     worldSize.getHeight()/20);
@@ -250,7 +266,7 @@ public class GameWorld{
         Point bLocation = new Point(  worldSize.getWidth()/12,
                 riverLowerBound + worldSize.getHeight()/10);
         Dimension bDimension = new Dimension(worldSize.getWidth()/9,
-                                            (int)(worldSize.getHeight()/3));
+                                            worldSize.getHeight()/3);
         return new Building(bLocation, bDimension, worldSize);
     }
 
