@@ -4,22 +4,16 @@
 
 package org.csc133.a2;
 
-import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.UITimer;
 import org.csc133.a2.commands.*;
 import org.csc133.a2.views.ControlCluster;
 import org.csc133.a2.views.GlassCockpit;
 import org.csc133.a2.views.MapView;
-
-import javax.naming.ldap.Control;
-import javax.swing.border.Border;
 
 public class Game extends Form implements Runnable {
     final private GameWorld gw;
@@ -62,7 +56,8 @@ public class Game extends Form implements Runnable {
         addKeyListener('Q', new ExitCommand(gw));
 
         UITimer timer = new UITimer(this);
-        timer.schedule(50, true, this);
+        timer.schedule(25, true, this);
+        this.show();
     }
 
     @Override

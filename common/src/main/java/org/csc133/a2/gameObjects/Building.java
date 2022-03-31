@@ -16,7 +16,8 @@ public class Building extends Fixed {
     private Fires fires;
     final private int area;
 
-    public Building(Point location, Dimension dimension) {
+    public Building(Point location, Dimension dimension, Dimension worldSize) {
+        setWorldSize(worldSize);
         fires = new Fires();
         setColor(ColorUtil.rgb(255, 0, 0));
         setLocation(location);

@@ -13,8 +13,7 @@ import com.codename1.system.Lifecycle;
 public class AppMain extends Lifecycle {
     @Override
     public void runApp() {
-        Game game = new Game();
-        game.show();
+        new Game();
     }
 }
 

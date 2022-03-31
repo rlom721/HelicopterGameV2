@@ -8,6 +8,7 @@ public abstract class GameObject implements Drawable {
     private Point location;
     private Dimension dimension;
     private int color;
+    private Dimension worldSize;
 
     public void setLocation(Point location){ this.location = location; }
 
@@ -22,4 +23,8 @@ public abstract class GameObject implements Drawable {
     public Dimension getDimension() { return this.dimension; }
 
     public int getColor() { return this.color; }
+
+    public void setWorldSize(Dimension worldSize) {
+        this.worldSize = worldSize;
+    }
 }

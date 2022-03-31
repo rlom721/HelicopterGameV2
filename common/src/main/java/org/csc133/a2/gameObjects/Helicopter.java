@@ -18,9 +18,10 @@ public class Helicopter extends Movable implements Steerable {
     final private int MAX_SPEED = 10;
     final private int MAX_WATER = 1000;
     private double angle;
+    final private int INIT_FUEL = 25000;
 
-    public Helicopter(Point helipadCenter, int initFuel) {
-        fuel = initFuel;
+    public Helicopter(Point helipadCenter) {
+        fuel = INIT_FUEL;
         water = 0;
         setSpeed(0);
         setHeading(0);
