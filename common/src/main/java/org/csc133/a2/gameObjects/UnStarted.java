@@ -5,9 +5,9 @@ import com.codename1.charts.util.ColorUtil;
 public class UnStarted extends FireState {
     private static UnStarted unStarted;
 
-    UnStarted() { }
+    private UnStarted() { }
 
-    public static FireState getState(){
+    public static FireState getInstance(){
         if (unStarted == null)
             unStarted = new UnStarted();
         return unStarted;
@@ -16,6 +16,6 @@ public class UnStarted extends FireState {
     @Override
     void setNextState(Fire fire) {
         fire.setColor(ColorUtil.MAGENTA);
-        fire.setFireState(Burning.getState());
+        fire.setFireState(Burning.getInstance());
     }
 }

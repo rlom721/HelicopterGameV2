@@ -4,8 +4,6 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
-
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Building extends Fixed {

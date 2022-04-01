@@ -5,9 +5,9 @@ import com.codename1.charts.util.ColorUtil;
 public class Burning extends FireState {
     private static Burning burning;
 
-    Burning() { }
+    private Burning() { }
 
-    public static FireState getState(){
+    public static FireState getInstance(){
         if (burning == null)
             burning = new Burning();
         return burning;
@@ -16,6 +16,6 @@ public class Burning extends FireState {
     @Override
     void setNextState(Fire fire) {
         fire.setColor(ColorUtil.BLACK);
-        fire.setFireState(Extinguished.getState());
+        fire.setFireState(Extinguished.getInstance());
     }
 }

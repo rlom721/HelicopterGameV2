@@ -5,7 +5,7 @@ public class Extinguished extends FireState {
 
     private Extinguished() { }
 
-    public static FireState getState(){
+    public static FireState getInstance(){
         if (extinguished == null)
             extinguished = new Extinguished();
         return extinguished;

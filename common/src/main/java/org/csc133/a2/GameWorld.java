@@ -19,8 +19,7 @@ public class GameWorld{
     private Helicopter helicopter;
     private ArrayList<GameObject> go;
     private int numberOfFires;
-
-    private enum Result {LOST, WON, LOST_FUEL, LOST_BUILDINGS}
+    private enum Result {LOST, WON}
 
     private GameWorld() { }
 
@@ -82,19 +81,20 @@ public class GameWorld{
         helicopter.steerRight();
     }
 
-    public ArrayList<GameObject> getGameObjectCollection() {
-        return go;
+    void quit(){
+        Display.getInstance().exitApplication();
     }
 
     private void endGame() {
         if(helicopter.fuel() <= 0)
             gameOver(Result.LOST);
-        else if( helicopter.hasLandedOnHelipad(helipad) && allFiresAreOut()
+        else if( helicopter.hasLandedOnHelipad(helipad)
+                 && allFiresAreOut()
                  && helicopter.speed() == 0)
             gameOver(Result.WON);
     }
 
-    void gameOver(Result result){
+    private void gameOver(Result result){
         boolean replayGame = Dialog.show("Game Over", replayPrompt(result),
                 "Heck Yeah!", "Some Other Time");
 
@@ -107,22 +107,14 @@ public class GameWorld{
     private String replayPrompt(Result result) {
         String dialogMsg = "";
 
-        if(result == Result.LOST && helicopter.fuel() < 0){
+        if(result == Result.LOST && helicopter.fuel() < 0)
             dialogMsg = "You ran out of fuel :(\nPlay Again?";
-        }
-        else if (result == Result.LOST && allBuildingsDestroyed()){
+        else if (result == Result.LOST && allBuildingsDestroyed())
             dialogMsg = "All buildings were destroyed :(\nPlay Again?";
-        }
-        else if(result == Result.WON){
-            dialogMsg = "You won!" + "\nScore: " + score()
-                    + "\nPlay Again?";
-        }
+        else if(result == Result.WON)
+            dialogMsg = "You won!" + "\nScore: " + score() + "\nPlay Again?";
 
         return dialogMsg;
-    }
-
-    void quit(){
-        Display.getInstance().exitApplication();
     }
 
     public void setDimension(Dimension worldSize) {
@@ -141,7 +133,9 @@ public class GameWorld{
         return Integer.toString(helicopter.fuel());
     }
 
-    public String getNumberOfFires() { return Integer.toString(numberOfFires); }
+    public String getNumberOfFires() {
+        return Integer.toString(numberOfFires);
+    }
 
     public String getTotalFireSize() {
         return Integer.toString(totalFireSize());
@@ -153,6 +147,10 @@ public class GameWorld{
 
     public String getTotalDamage() {
         return percentDamageOfBuildings() + "%";
+    }
+
+    public ArrayList<GameObject> getGameObjectCollection() {
+        return go;
     }
 
     private int score() { return 100 - percentDamageOfBuildings(); }

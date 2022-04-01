@@ -4,9 +4,7 @@ import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
-
 import java.util.Random;
-
 import static com.codename1.ui.CN.*;
 
 public class Fire extends Fixed{
@@ -18,7 +16,7 @@ public class Fire extends Fixed{
 
     public Fire(Building building, Dimension worldSize) {
         setWorldSize(worldSize);
-        state = new UnStarted();
+        state = UnStarted.getInstance();
         this.building = building;
         this.building.setFireInBuilding(this);
         setDimension(new Dimension(diameter, diameter));
@@ -78,7 +76,7 @@ public class Fire extends Fixed{
         if (diameter > 0) {
             g.fillArc(containerOrigin.getX() + getLocation().getX(),
                     containerOrigin.getY() + getLocation().getY(),
-                    diameter, diameter, 0, 360);
+                       diameter, diameter, 0, 360);
             g.drawString(Integer.toString(diameter),
                     containerOrigin.getX() + getLocation().getX() + diameter,
                     containerOrigin.getY() + getLocation().getY() + diameter);
