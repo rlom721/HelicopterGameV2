@@ -4,7 +4,6 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.Game;
 
 public class Helipad extends Fixed{
     final private Point center;

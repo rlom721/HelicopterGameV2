@@ -30,11 +30,13 @@ public class GameWorld{
     }
 
     public void init(){
+        final int INIT_FUEL = 25000;
         numberOfFires = 0;
         river = new River(worldSize);
         helipad = new Helipad(worldSize);
-        helicopter = new Helicopter(helipad.getCenter(), worldSize);
+        helicopter = new Helicopter(helipad.getCenter(), INIT_FUEL, worldSize);
         go = new ArrayList<>();
+
         go.add(river);
         go.add(helipad);
         go.add(addBuildingAboveRiver());
@@ -42,7 +44,6 @@ public class GameWorld{
         go.add(addBuildingBelowRightRiver());
         placeFiresInBuilding();
         go.add(helicopter);
-        System.err.println("running init()...");
     }
 
     public void tick(){
@@ -61,12 +62,8 @@ public class GameWorld{
     }
 
     public void drink() {
-        if(helicopter.isAboveRiver(river))  // move to drink method?
+        if(helicopter.isAboveRiver(river))
             helicopter.drink();
-    }
-
-    public void exit() {
-        quit();
     }
 
     public void fight() {
@@ -81,9 +78,7 @@ public class GameWorld{
         helicopter.steerRight();
     }
 
-    void quit(){
-        Display.getInstance().exitApplication();
-    }
+    public void exit(){ Display.getInstance().exitApplication(); }
 
     private void endGame() {
         if(helicopter.fuel() <= 0)
@@ -99,15 +94,15 @@ public class GameWorld{
                 "Heck Yeah!", "Some Other Time");
 
         if(replayGame)
-            init(); //new Game();
+            init();
         else
-            quit();
+            exit();
     }
 
     private String replayPrompt(Result result) {
         String dialogMsg = "";
 
-        if(result == Result.LOST && helicopter.fuel() < 0)
+        if(result == Result.LOST && helicopter.fuel() <= 0)
             dialogMsg = "You ran out of fuel :(\nPlay Again?";
         else if (result == Result.LOST && allBuildingsDestroyed())
             dialogMsg = "All buildings were destroyed :(\nPlay Again?";

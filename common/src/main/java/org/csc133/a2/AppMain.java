@@ -16,4 +16,3 @@ public class AppMain extends Lifecycle {
         new Game();
     }
 }
-

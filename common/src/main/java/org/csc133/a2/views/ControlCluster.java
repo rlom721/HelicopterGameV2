@@ -5,12 +5,9 @@ import com.codename1.ui.*;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Font;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import org.csc133.a2.GameWorld;
 import org.csc133.a2.commands.*;
-
-import javax.swing.border.Border;
 
 public class ControlCluster extends Container {
     GameWorld gw;
@@ -32,9 +29,6 @@ public class ControlCluster extends Container {
         westCommands.add(BorderLayout.CENTER, right);
         westCommands.add(BorderLayout.EAST, fight);
         this.add(BorderLayout.WEST, westCommands);
-
-        BorderLayout bl = new BorderLayout();
-        bl.setCenterBehavior(BorderLayout.CENTER_BEHAVIOR_SCALE);
 
         this.add(BorderLayout.CENTER, exit);
 

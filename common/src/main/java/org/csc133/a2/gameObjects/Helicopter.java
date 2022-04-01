@@ -5,7 +5,6 @@ import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.Game;
 import org.csc133.a2.interfaces.Steerable;
 
 import static com.codename1.ui.CN.*;
@@ -15,14 +14,13 @@ public class Helicopter extends Movable implements Steerable {
     final private int size;
     private int fuel, water;
     private final int headingRadius;
+    private double angle;
     final private int MAX_SPEED = 10;
     final private int MAX_WATER = 1000;
-    private double angle;
-    final private int INIT_FUEL = 25000;
 
-    public Helicopter(Point helipadCenter, Dimension worldSize) {
+    public Helicopter(Point helipadCenter, int initFuel, Dimension worldSize){
         setWorldSize(worldSize);
-        fuel = INIT_FUEL;
+        fuel = initFuel;
         water = 0;
         setSpeed(0);
         setHeading(0);
@@ -39,9 +37,10 @@ public class Helicopter extends Movable implements Steerable {
 
     @Override
     public void move() {
-        center = new Point( center.getX() + (int) (speed() * Math.cos(angle)),
-                            center.getY() - (int) (speed() * Math.sin(angle)));
-        setLocation(new Point(center.getX() - size/2, center.getY() - size/2));
+        center = new Point( center.getX() + (int)(speed() * Math.cos(angle)),
+                            center.getY() - (int)(speed() * Math.sin(angle)));
+        setLocation(new Point(  center.getX() - size/2,
+                                center.getY() - size/2));
     }
 
     public void increaseSpeed() {
@@ -66,7 +65,6 @@ public class Helicopter extends Movable implements Steerable {
     }
 
     public void reduceFuel() {
-        // fuel -= speed * speed + 5;
         fuel -= Math.sqrt(speed()) + 5;
         if (fuel < 0) fuel = 0;
     }
@@ -159,8 +157,8 @@ public class Helicopter extends Movable implements Steerable {
                   containerOrigin.getY() + getLocation().getY(), size, size,
                 0, 360);
         g.drawString("F:  " + fuel,
-                    containerOrigin.getX() + getLocation().getX() - size / 2,
-                    containerOrigin.getY() + getLocation().getY() + size * 3);
+                    containerOrigin.getX() + getLocation().getX() - size/2,
+                    containerOrigin.getY() + getLocation().getY() + size*3);
         g.drawString("W: " + water,
                 containerOrigin.getX() + getLocation().getX() - size / 2,
                 containerOrigin.getY() + getLocation().getY() + size * 4);

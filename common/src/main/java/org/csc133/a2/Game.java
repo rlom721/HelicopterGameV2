@@ -1,7 +1,3 @@
-// ----------------------------------------------------------------------------
-// Initializes game world. Source of graphics context each object uses to draw.
-// ----------------------------------------------------------------------------
-
 package org.csc133.a2;
 
 import com.codename1.ui.Display;
@@ -15,6 +11,9 @@ import org.csc133.a2.views.ControlCluster;
 import org.csc133.a2.views.GlassCockpit;
 import org.csc133.a2.views.MapView;
 
+// ----------------------------------------------------------------------------
+// Initializes game world. Source of graphics context each object uses to draw.
+//
 public class Game extends Form implements Runnable {
     final private GameWorld gw;
     private MapView mapView;
@@ -56,7 +55,7 @@ public class Game extends Form implements Runnable {
         addKeyListener('Q', new ExitCommand(gw));
 
         UITimer timer = new UITimer(this);
-        timer.schedule(25, true, this);
+        timer.schedule(60, true, this);
         this.show();
     }
 
